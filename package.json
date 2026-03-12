@@ -1,0 +1,14 @@
+{
+  "name": "ppt-maker",
+  "version": "1.0.0",
+  "description": "HTML 기반 슬라이드 발표 시스템",
+  "scripts": {
+    "build": "node core/build.js",
+    "serve": "python3 -m http.server 3000",
+    "new-slide": "node core/new-slide.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "_serve_note": "Node.js 없이도 python3 -m http.server 3000 으로 서버 실행 가능"
+}

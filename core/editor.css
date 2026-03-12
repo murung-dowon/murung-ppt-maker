@@ -1,0 +1,330 @@
+/* ============================================================
+   editor.css — 브라우저 인라인 편집기 UI 스타일 (상단 가로 툴바)
+   ============================================================ */
+
+/* ── 편집 모드 토글 버튼 (비활성 시 우측 상단 플로팅) ───── */
+#editor-toggle {
+  position: fixed;
+  top: 12px;
+  right: 16px;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.52);
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: opacity 0.2s, background 0.2s;
+  opacity: 0;
+  white-space: nowrap;
+}
+
+body:hover #editor-toggle {
+  opacity: 1;
+}
+
+#editor-toggle:hover {
+  background: rgba(0, 0, 0, 0.78);
+}
+
+/* 편집 활성 시 토글 버튼은 툴바 안으로 숨김 */
+body.editor-active #editor-toggle {
+  display: none;
+}
+
+#editor-toggle .toggle-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+
+/* ── 상단 가로 툴바 ─────────────────────────────────────── */
+#editor-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 300;
+  display: none;
+  align-items: center;
+  gap: 0;
+  height: 48px;
+  padding: 0 12px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+/* 스크롤바 숨김 */
+#editor-toolbar::-webkit-scrollbar { display: none; }
+
+body.editor-active #editor-toolbar {
+  display: flex;
+}
+
+/* 편집 모드 활성화 시 슬라이드를 툴바 아래로 */
+body.editor-active .slide-body {
+  padding-top: 48px;
+  height: calc(100vh - 48px);
+  box-sizing: border-box;
+}
+
+/* 툴바 섹션 — 가로 배치 */
+.toolbar-section {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 0 8px;
+  flex-shrink: 0;
+}
+
+/* 섹션 라벨 (작은 회색 텍스트) */
+.toolbar-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #d1d5db;
+  margin-right: 4px;
+  white-space: nowrap;
+}
+
+/* 섹션 구분 세로선 */
+.toolbar-divider {
+  width: 1px;
+  height: 24px;
+  background: #e5e7eb;
+  flex-shrink: 0;
+  margin: 0 2px;
+}
+
+/* 툴바 행 (기존 구조 호환) */
+.toolbar-row {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+/* ── 버튼 ──────────────────────────────────────────────── */
+.tb-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  min-width: 30px;
+  padding: 0 6px;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  transition: background 0.12s;
+  font-family: var(--font-sans);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tb-btn:hover  { background: #f3f4f6; }
+.tb-btn.active { background: #dbeafe; color: #2563eb; }
+
+/* ── 인풋/컬러 ─────────────────────────────────────────── */
+.tb-input {
+  width: 48px;
+  height: 30px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 0 6px;
+  font-size: 12px;
+  font-family: var(--font-sans);
+  color: #374151;
+  text-align: center;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.tb-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.tb-color {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 2px;
+  cursor: pointer;
+  background: white;
+  flex-shrink: 0;
+}
+
+/* ── 편집 모드 닫기 버튼 (툴바 우측 끝) ─────────────────── */
+#tb-close {
+  margin-left: auto;
+  color: #9ca3af;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+#tb-close:hover { background: #fee2e2; color: #ef4444; }
+
+
+/* ── 편집 모드 활성 시 슬라이드 강조 ───────────────────── */
+/* 슬라이드 자체 outline 제거 — 툴바로 편집 상태 충분히 인지 가능 */
+
+body.editor-active [data-editable]:hover {
+  outline: 1.5px dashed rgba(37, 99, 235, 0.5);
+  outline-offset: 2px;
+  cursor: text;
+  border-radius: 2px;
+}
+
+body.editor-active [data-editable]:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  background: rgba(37, 99, 235, 0.03);
+  border-radius: 2px;
+}
+
+
+/* ── 애니메이션 드롭다운 ────────────────────────────────── */
+#anim-panel {
+  position: fixed;
+  top: 48px;
+  z-index: 400;
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  min-width: 160px;
+}
+
+#anim-panel.open {
+  display: flex;
+}
+
+.anim-title {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin-bottom: 2px;
+  padding: 0 4px;
+}
+
+.anim-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  color: #374151;
+  font-family: var(--font-sans);
+  transition: background 0.12s;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.anim-btn:hover { background: #f3f4f6; color: #2563eb; }
+.anim-btn .anim-icon { font-size: 15px; width: 18px; text-align: center; }
+
+
+/* ── 리사이즈 핸들 ─────────────────────────────────────── */
+.editor-selected {
+  outline: 2px solid #2563eb !important;
+  outline-offset: 0 !important;
+  position: relative;
+}
+
+.resize-handle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border: 2px solid #2563eb;
+  border-radius: 2px;
+  z-index: 300;
+}
+
+.resize-handle.nw { top: -5px;  left: -5px;  cursor: nw-resize; }
+.resize-handle.n  { top: -5px;  left: 50%;   transform: translateX(-50%); cursor: n-resize; }
+.resize-handle.ne { top: -5px;  right: -5px; cursor: ne-resize; }
+.resize-handle.e  { top: 50%;   right: -5px; transform: translateY(-50%); cursor: e-resize; }
+.resize-handle.se { bottom: -5px; right: -5px; cursor: se-resize; }
+.resize-handle.s  { bottom: -5px; left: 50%; transform: translateX(-50%); cursor: s-resize; }
+.resize-handle.sw { bottom: -5px; left: -5px; cursor: sw-resize; }
+.resize-handle.w  { top: 50%;   left: -5px;  transform: translateY(-50%); cursor: w-resize; }
+
+
+/* ── 토스트 ────────────────────────────────────────────── */
+#editor-toast {
+  position: fixed;
+  bottom: 72px;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 500;
+}
+
+#editor-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+
+/* ── 애니메이션 프리셋 ─────────────────────────────────── */
+@keyframes anim-fade-in    { from { opacity: 0; }                              to { opacity: 1; } }
+@keyframes anim-slide-left { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes anim-slide-up   { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes anim-zoom-up    { from { opacity: 0; transform: scale(0.85); }      to { opacity: 1; transform: scale(1); } }
+@keyframes anim-bounce     { 0% { opacity: 0; transform: scale(0.7); } 60% { transform: scale(1.05); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes anim-flip       { from { opacity: 0; transform: rotateY(-30deg); }  to { opacity: 1; transform: rotateY(0); } }
+@keyframes anim-blur-in    { from { opacity: 0; filter: blur(12px); }          to { opacity: 1; filter: blur(0); } }
+
+[data-anim="fade-in"]    { animation: anim-fade-in    0.5s ease both; }
+[data-anim="slide-left"] { animation: anim-slide-left 0.5s ease both; }
+[data-anim="slide-up"]   { animation: anim-slide-up   0.5s ease both; }
+[data-anim="zoom-up"]    { animation: anim-zoom-up    0.5s ease both; }
+[data-anim="bounce"]     { animation: anim-bounce      0.6s ease both; }
+[data-anim="flip"]       { animation: anim-flip        0.5s ease both; }
+[data-anim="blur-in"]    { animation: anim-blur-in     0.5s ease both; }
+
+[data-delay="1"] { animation-delay: 0.1s; }
+[data-delay="2"] { animation-delay: 0.2s; }
+[data-delay="3"] { animation-delay: 0.3s; }
+[data-delay="4"] { animation-delay: 0.4s; }
+[data-delay="5"] { animation-delay: 0.5s; }
+[data-delay="6"] { animation-delay: 0.6s; }
+[data-delay="7"] { animation-delay: 0.7s; }
+[data-delay="8"] { animation-delay: 0.8s; }

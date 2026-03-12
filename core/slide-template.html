@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide — 제목</title>
+  <link rel="stylesheet" href="../core/theme.css">
+  <link rel="stylesheet" href="../core/slide-base.css">
+  <link rel="stylesheet" href="../core/editor.css">
+</head>
+
+<!--
+  사용 가능한 레이아웃 클래스:
+    layout-title    — 대형 타이틀 (첫 슬라이드용)
+    layout-section  — 섹션 구분
+    layout-content  — 일반 콘텐츠 (가장 많이 사용)
+    layout-two-col  — 2단 분할
+    layout-quote    — 인용구
+    layout-image    — 전체 이미지
+    layout-closing  — 마무리
+
+  사용 가능한 컴포넌트:
+    <span class="highlight">강조 텍스트</span>
+    <span class="highlight-bg">배경 강조</span>
+    <span class="chip">칩 태그</span>
+    <span class="chip accent">포인트 칩</span>
+    <div class="callout">콜아웃 박스</div>
+    <div class="divider"></div>
+    <span class="badge">1</span>
+    <div class="card">카드</div>
+
+  애니메이션 (data-anim 속성):
+    fade-in / slide-left / slide-up / zoom-up / bounce / flip / blur-in
+    딜레이: data-delay="1"~"8" (0.1s 단위)
+
+  예시: <h1 data-anim="fade-in" data-delay="1">제목</h1>
+-->
+
+<body class="slide-body">
+
+  <div class="slide layout-content">
+
+    <!-- 슬라이드 제목 -->
+    <h1 class="slide-title">슬라이드 제목</h1>
+    <div class="slide-title-bar"></div>
+
+    <!-- 본문 영역 -->
+    <div class="slide-body-content">
+
+      <!-- 불릿 리스트 예시 -->
+      <ul class="slide-list">
+        <li>첫 번째 항목입니다</li>
+        <li>두 번째 항목입니다</li>
+        <li>세 번째 항목입니다</li>
+      </ul>
+
+    </div>
+
+  </div>
+
+  <script src="../core/nav.js"></script>
+  <script src="../core/editor.js"></script>
+</body>
+</html>
