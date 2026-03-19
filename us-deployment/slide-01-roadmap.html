@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>2026 US Deployment Roadmap — Speedfloor X MyTrucker Pro</title>
+  <link rel="stylesheet" href="../core/theme.css">
+  <link rel="stylesheet" href="../core/slide-base.css">
+  <link rel="stylesheet" href="../core/editor.css">
+  <style>
+    .slide {
+      padding: 40px 56px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* ── Header ── */
+    .slide-header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 5px;
+    }
+
+    .slide-header-row h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+      line-height: 1.2;
+    }
+
+    .logo-area {
+      text-align: right;
+      font-size: 11px;
+      color: var(--color-text-light);
+      line-height: 1.6;
+    }
+
+    .logo-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-text-muted);
+    }
+
+    .header-divider {
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, var(--color-accent) 120px, var(--color-border) 120px);
+      margin-bottom: 20px;
+      border-radius: 2px;
+    }
+
+    /* ── Timeline phases ── */
+    .timeline {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .phase {
+      border-radius: 12px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2px;
+    }
+
+    .phase-month {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .phase-badge {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 20px;
+    }
+
+    .phase-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      opacity: 0.7;
+    }
+
+    .milestone-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .milestone-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12.5px;
+      line-height: 1.45;
+    }
+
+    .milestone-list li .date {
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .milestone-list li .desc {
+      opacity: 0.85;
+    }
+
+    /* completed phase */
+    .phase.completed {
+      background: #fff;
+      border: 2px solid var(--color-accent);
+    }
+
+    .phase.completed .phase-month {
+      color: var(--color-accent);
+    }
+
+    .phase.completed .phase-label {
+      color: #6b7280;
+    }
+
+    .phase.completed .phase-badge {
+      background: #dbeafe;
+      color: var(--color-accent);
+    }
+
+    .phase.completed li {
+      color: #374151;
+    }
+
+    .phase.completed .date {
+      color: var(--color-accent);
+    }
+
+    .phase.completed .check {
+      color: var(--color-accent);
+      font-size: 13px;
+    }
+
+    /* in-progress phase */
+    .phase.in-progress {
+      background: #fcd34d;
+      border: 2px solid #fcd34d;
+    }
+
+    .phase.in-progress .phase-month {
+      color: #78350f;
+    }
+
+    .phase.in-progress .phase-label {
+      color: #92400e;
+    }
+
+    .phase.in-progress .phase-badge {
+      background: rgba(0,0,0,0.12);
+      color: #78350f;
+    }
+
+    .phase.in-progress li {
+      color: #1c1917;
+    }
+
+    .phase.in-progress .date {
+      color: #78350f;
+    }
+
+    .phase.in-progress .deadline-tag {
+      font-size: 9px;
+      background: #92400e;
+      color: white;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      vertical-align: middle;
+      margin-left: 2px;
+    }
+
+    /* upcoming phase */
+    .phase.upcoming {
+      background: #f9fafb;
+      border: 2px solid #e5e7eb;
+    }
+
+    .phase.upcoming .phase-month {
+      color: #374151;
+    }
+
+    .phase.upcoming .phase-label {
+      color: #6b7280;
+    }
+
+    .phase.upcoming .phase-badge {
+      background: #e5e7eb;
+      color: #6b7280;
+    }
+
+    .phase.upcoming li {
+      color: #374151;
+    }
+
+    .phase.upcoming .date {
+      color: #374151;
+    }
+
+    /* Arrow connectors */
+    .phase-arrow {
+      position: absolute;
+      right: -18px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: var(--color-border);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ── Product Specs ── */
+    .product-section {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .spec-card {
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .spec-card.common {
+      background: #eff6ff;
+      border: 1.5px solid #bfdbfe;
+    }
+
+    .spec-card.narrow {
+      background: #eff6ff;
+      border: 1.5px solid #bfdbfe;
+    }
+
+    .spec-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .spec-card.common .spec-title {
+      color: var(--color-accent);
+    }
+
+    .spec-card.narrow .spec-title {
+      color: var(--color-accent);
+    }
+
+    .spec-tag {
+      font-size: 9px;
+      padding: 2px 7px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    .spec-card.common .spec-tag {
+      background: #dbeafe;
+      color: var(--color-accent);
+    }
+
+    .spec-card.narrow .spec-tag {
+      background: #dbeafe;
+      color: var(--color-accent);
+    }
+
+    .spec-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .spec-list li {
+      font-size: 12.5px;
+      line-height: 1.4;
+      color: #374151;
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+    }
+
+    .spec-list li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    .spec-card.common .spec-list li::before {
+      background: var(--color-accent);
+    }
+
+    .spec-card.narrow .spec-list li::before {
+      background: var(--color-accent);
+    }
+
+    /* ── Bottom deadline bar ── */
+    .deadline-bar {
+      margin-top: 14px;
+      background: #1e293b;
+      border-radius: 10px;
+      padding: 12px 22px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dl-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      white-space: nowrap;
+      margin-right: 8px;
+    }
+
+    .dl-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dl-date {
+      font-size: 13px;
+      font-weight: 800;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .dl-desc {
+      font-size: 11px;
+      color: rgba(255,255,255,0.6);
+      white-space: nowrap;
+    }
+
+    .dl-sep {
+      width: 1px;
+      height: 28px;
+      background: rgba(255,255,255,0.12);
+      margin: 0 10px;
+    }
+
+    .dl-urgent {
+      font-size: 10px;
+      background: #ef4444;
+      color: white;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body class="slide-body">
+
+  <div class="slide">
+
+    <!-- Header -->
+    <div class="slide-header-row" data-anim="fade-in">
+      <div>
+        <p class="eyebrow">000 &amp; 000 000</p>
+        <h1>2026 US Deployment Roadmap</h1>
+      </div>
+      <div class="logo-area">
+        <div class="logo-name">000 X 000</div>
+        <div>000 · 000</div>
+      </div>
+    </div>
+
+    <div class="header-divider"></div>
+
+    <!-- Timeline -->
+    <div class="timeline" data-anim="slide-up">
+
+      <!-- March: Completed -->
+      <div class="phase completed" style="position:relative;">
+        <div class="phase-header">
+          <span class="phase-month">March</span>
+          <span class="phase-badge">Completed</span>
+        </div>
+        <div class="phase-label">000 &amp; 000</div>
+        <ul class="milestone-list">
+          <li>
+            <span class="check">✓</span>
+            <div><span class="date">Mar 6</span> <span class="desc">000 000 000 &amp; 000</span></div>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <div><span class="date">Mar 25</span> <span class="desc">000 000 &amp; 000 000 000</span></div>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <div><span class="date">Mar 31</span> <span class="desc">000 000 000 000 (000, 000)</span></div>
+          </li>
+        </ul>
+        <span class="phase-arrow">→</span>
+      </div>
+
+      <!-- April–May: In Progress -->
+      <div class="phase in-progress" style="position:relative;">
+        <div class="phase-header">
+          <span class="phase-month">April – May</span>
+          <span class="phase-badge">In Progress</span>
+        </div>
+        <div class="phase-label">000 &amp; 000 000</div>
+        <ul class="milestone-list">
+          <li>
+            <div><span class="date">Apr 15</span> <span class="desc">000 000 000 000 000</span></div>
+          </li>
+          <li>
+            <div>
+              <span class="date">Apr 20</span> <span class="desc">000 000 000 + 000 000</span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <span class="date">Apr 30</span> <span class="desc">000 000 000 <span class="deadline-tag">DEADLINE</span></span>
+            </div>
+          </li>
+          <li>
+            <div>
+              <span class="date">May 15</span> <span class="desc">000 000 — 000 000 000 <span class="deadline-tag">DEADLINE</span></span>
+            </div>
+          </li>
+        </ul>
+        <span class="phase-arrow" style="color:#fcd34d;">→</span>
+      </div>
+
+      <!-- June: Upcoming -->
+      <div class="phase upcoming">
+        <div class="phase-header">
+          <span class="phase-month">June</span>
+          <span class="phase-badge">Upcoming</span>
+        </div>
+        <div class="phase-label">000 &amp; 000 R&amp;D</div>
+        <ul class="milestone-list">
+          <li>
+            <div><span class="date">Mid-Jun</span> <span class="desc">000 000 000 000</span></div>
+          </li>
+          <li>
+            <div><span class="date">Late-Jun</span> <span class="desc">000 000 000 000</span></div>
+          </li>
+          <li>
+            <div><span class="date">Ongoing</span> <span class="desc">000 000 &amp; 000 000</span></div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Product Improvements label -->
+    <div style="font-size:14px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-text-muted); margin-bottom:10px;" data-anim="fade-in" data-delay="1">Product Improvements</div>
+
+    <!-- Product Specs -->
+    <div class="product-section" data-anim="fade-in" data-delay="1">
+
+      <!-- Common Improvements -->
+      <div class="spec-card common">
+        <div class="spec-title">
+          000 000
+          <span class="spec-tag">000</span>
+        </div>
+        <ul class="spec-list">
+          <li>000 000 000 000 000 000</li>
+          <li>000 000 000 000 000 000</li>
+          <li>000 000 000 — 000 000 000</li>
+          <li>000 000 000 000 000</li>
+          <li>000: 000 000 000 (000) 000</li>
+        </ul>
+      </div>
+
+      <!-- Narrow-only Improvements -->
+      <div class="spec-card narrow">
+        <div class="spec-title">
+          000 000 000
+          <span class="spec-tag">000</span>
+        </div>
+        <ul class="spec-list">
+          <li>000 000 — 000 000 000</li>
+          <li>000 000 000 000 000 (000, 000)</li>
+          <li>000 000 000 000 000 000</li>
+        </ul>
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <script src="../core/nav.js"></script>
+  <script src="../core/editor.js"></script>
+</body>
+</html>
