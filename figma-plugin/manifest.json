@@ -1,0 +1,8 @@
+{
+  "name": "ppt-maker → Figma",
+  "id": "ppt-maker-figma-export",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"]
+}

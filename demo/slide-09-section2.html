@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo — Section 02</title>
+  <link rel="stylesheet" href="../core/theme.css">
+  <link rel="stylesheet" href="../core/slide-base.css">
+  <link rel="stylesheet" href="../core/editor.css">
+  <style>
+    /* 다크 테마 섹션 변형 */
+    .slide.layout-section {
+      background: #0f172a;
+    }
+
+    .slide.layout-section .section-number {
+      color: rgba(255,255,255,0.06);
+    }
+
+    .slide.layout-section .section-label {
+      color: #60a5fa;
+    }
+
+    .slide.layout-section .section-title {
+      color: #f8fafc;
+    }
+
+    .slide.layout-section .section-desc {
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* 좌측 세로 강조 바 */
+    .slide.layout-section::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 6px;
+      background: linear-gradient(to bottom, #3b82f6, #06b6d4);
+    }
+
+    /* 우측 장식 그리드 */
+    .deco-grid {
+      position: absolute;
+      right: 80px;
+      bottom: 60px;
+      display: grid;
+      grid-template-columns: repeat(6, 12px);
+      grid-template-rows: repeat(4, 12px);
+      gap: 10px;
+    }
+
+    .deco-grid span {
+      display: block;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+    }
+  </style>
+</head>
+<body class="slide-body">
+  <div class="slide layout-section">
+
+    <div class="deco-grid">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="section-number" data-anim="fade-in" data-delay="1">02</div>
+
+    <p class="section-label" data-anim="fade-in" data-delay="2">Chapter Two</p>
+    <h2 class="section-title" data-anim="slide-up" data-delay="3">The Path Forward</h2>
+    <p class="section-desc" data-anim="fade-in" data-delay="4">
+      전략 수립 · 우선순위 결정 · 실행 계획
+    </p>
+
+  </div>
+  <script src="../core/nav.js"></script>
+  <script src="../core/editor.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Notion Demo — Chapter Divider</title>
+  <link rel="stylesheet" href="../core/theme.css">
+  <link rel="stylesheet" href="theme-notion.css">
+  <link rel="stylesheet" href="../core/slide-base.css">
+  <link rel="stylesheet" href="../core/editor.css">
+  <style>
+    .slide {
+      background: var(--color-bg);
+      padding: 96px 120px;
+      justify-content: center;
+    }
+
+    .chapter-label {
+      font-family: var(--font-sans);
+      font-size: var(--font-size-small);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-light);
+      margin-bottom: 20px;
+    }
+
+    .chapter-title {
+      font-family: var(--font-serif);
+      font-size: 80px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--color-text);
+      margin-bottom: var(--space-lg);
+    }
+
+    .chapter-rule {
+      width: 48px;
+      height: 2px;
+      background: var(--color-border-dark);
+      margin-bottom: var(--space-lg);
+    }
+
+    .chapter-desc {
+      font-family: var(--font-sans);
+      font-size: 20px;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+      max-width: 480px;
+    }
+
+    .chapter-number {
+      position: absolute;
+      right: 120px;
+      bottom: 80px;
+      font-family: var(--font-serif);
+      font-size: 200px;
+      font-weight: 700;
+      color: var(--color-border);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      user-select: none;
+    }
+  </style>
+</head>
+<body class="slide-body">
+  <div class="slide">
+
+    <div class="chapter-number">01</div>
+
+    <p class="chapter-label" data-anim="fade-in" data-delay="1">Chapter One</p>
+
+    <div class="chapter-rule" data-anim="fade-in" data-delay="1"></div>
+
+    <h2 class="chapter-title" data-anim="slide-up" data-delay="2">
+      현황 진단
+    </h2>
+
+    <p class="chapter-desc" data-anim="fade-in" data-delay="3">
+      지금 우리는 어디에 있는가.<br>
+      무엇이 작동하고, 무엇이 작동하지 않는가.
+    </p>
+
+  </div>
+  <script src="../core/nav.js"></script>
+  <script src="../core/editor.js"></script>
+</body>
+</html>

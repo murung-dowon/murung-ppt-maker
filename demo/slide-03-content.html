@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo — Content List</title>
+  <link rel="stylesheet" href="../core/theme.css">
+  <link rel="stylesheet" href="../core/slide-base.css">
+  <link rel="stylesheet" href="../core/editor.css">
+  <style>
+    .item-desc {
+      font-size: var(--font-size-small);
+      color: var(--color-text-muted);
+      margin-top: 4px;
+      line-height: var(--line-height-normal);
+    }
+
+    .slide-list.numbered li {
+      align-items: flex-start;
+      gap: var(--space-md);
+    }
+
+    .slide-list.numbered li .badge {
+      margin-top: 0;
+    }
+
+    .item-body {
+      flex: 1;
+    }
+
+    .item-title {
+      font-size: var(--font-size-body);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text);
+    }
+  </style>
+</head>
+<body class="slide-body">
+  <div class="slide layout-content">
+
+    <!-- 슬라이드 헤더 -->
+    <div class="slide-header" data-anim="fade-in">
+      <span class="slide-logo">Demo Deck</span>
+      <span class="slide-tag">Chapter 01</span>
+    </div>
+
+    <h1 class="slide-title" data-anim="slide-up" data-delay="1">세 가지 핵심 과제</h1>
+    <div class="slide-title-bar" data-anim="fade-in" data-delay="1"></div>
+
+    <div class="slide-body-content">
+      <ul class="slide-list numbered" data-anim="slide-up" data-delay="2">
+        <li>
+          <div class="item-body">
+            <div class="item-title">사용자 리텐션 저하</div>
+            <div class="item-desc">첫 달 이탈률이 전년 대비 18% 증가했으며, 핵심 기능 미사용 비율이 높게 나타남. 온보딩 경험 개선이 시급함.</div>
+          </div>
+        </li>
+        <li>
+          <div class="item-body">
+            <div class="item-title">팀 간 커뮤니케이션 비효율</div>
+            <div class="item-desc">제품·디자인·엔지니어링 간 컨텍스트 공유 지연으로 스프린트 지연이 반복됨. 공통 언어와 프로세스 정립 필요.</div>
+          </div>
+        </li>
+        <li>
+          <div class="item-body">
+            <div class="item-title">데이터 기반 의사결정 부재</div>
+            <div class="item-desc">주요 의사결정의 72%가 직관에 의존. 측정 가능한 지표 체계와 대시보드 구축이 전략 실행의 선결 조건.</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="callout" data-anim="fade-in" data-delay="3" style="margin-top: var(--space-lg);">
+        세 과제 모두 <strong>사람·프로세스·도구</strong>의 정렬 문제로 귀결됩니다.
+      </div>
+    </div>
+
+  </div>
+  <script src="../core/nav.js"></script>
+  <script src="../core/editor.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+{
+  "project": "demo",
+  "generatedAt": "2026-04-16T00:35:25.541Z",
+  "slides": [
+    {
+      "index": 0,
+      "file": "slide-01-title.html",
+      "layout": "layout-title",
+      "theme": "default",
+      "elements": {
+        "eyebrow": "PRODUCT STRATEGY · 2026",
+        "title": "Building for the Next Decade",
+        "subtitle": "A framework for sustainable growth through design, data, and cross-functional collaboration.",
+        "meta": "April 2026"
+      }
+    },
+    {
+      "index": 1,
+      "file": "slide-02-section.html",
+      "layout": "layout-section",
+      "theme": "default",
+      "elements": {
+        "sectionNumber": "01",
+        "sectionLabel": "Chapter One",
+        "sectionTitle": "Where We Are Today",
+        "sectionDesc": "현황 진단 · 문제 정의 · 기회 발견"
+      }
+    },
+    {
+      "index": 2,
+      "file": "slide-03-content.html",
+      "layout": "layout-content",
+      "theme": "default",
+      "elements": {
+        "title": "세 가지 핵심 과제",
+        "listItems": [
+          "사용자 리텐션 저하 첫 달 이탈률이 전년 대비 18% 증가했으며, 핵심 기능 미사용 비율이 높게 나타남. 온보딩 경험 개선이 시급함.",
+          "팀 간 커뮤니케이션 비효율 제품·디자인·엔지니어링 간 컨텍스트 공유 지연으로 스프린트 지연이 반복됨. 공통 언어와 프로세스 정립 필요.",
+          "데이터 기반 의사결정 부재 주요 의사결정의 72%가 직관에 의존. 측정 가능한 지표 체계와 대시보드 구축이 전략 실행의 선결 조건."
+        ],
+        "callout": "세 과제 모두 사람·프로세스·도구"
+      }
+    },
+    {
+      "index": 3,
+      "file": "slide-04-stats.html",
+      "layout": "layout-content",
+      "theme": "default",
+      "elements": {
+        "title": "핵심 성과 지표"
+      }
+    },
+    {
+      "index": 4,
+      "file": "slide-05-two-col.html",
+      "layout": "layout-two-col",
+      "theme": "default",
+      "elements": {
+        "title": "우리가 집중해야 할 것",
+        "colTitles": [
+          "배경"
+        ]
+      }
+    },
+    {
+      "index": 5,
+      "file": "slide-06-quote.html",
+      "layout": "layout-quote",
+      "theme": "default",
+      "elements": {
+        "quoteText": "사람들은 디자인이 어떻게 생겼는지에 관한 것이라 생각합니다. 하지만 더 깊이 들어가면, 디자인은 작동 방식",
+        "quoteAuthor": "Steve Jobs",
+        "quoteSource": "New York Times, 2003"
+      }
+    },
+    {
+      "index": 6,
+      "file": "slide-07-timeline.html",
+      "layout": "layout-content",
+      "theme": "default",
+      "elements": {
+        "title": "2026 실행 로드맵"
+      }
+    },
+    {
+      "index": 7,
+      "file": "slide-08-compare.html",
+      "layout": "layout-content",
+      "theme": "default",
+      "elements": {
+        "title": "개선 전후 비교"
+      }
+    },
+    {
+      "index": 8,
+      "file": "slide-09-section2.html",
+      "layout": "layout-section",
+      "theme": "default",
+      "elements": {
+        "sectionNumber": "02",
+        "sectionLabel": "Chapter Two",
+        "sectionTitle": "The Path Forward",
+        "sectionDesc": "전략 수립 · 우선순위 결정 · 실행 계획"
+      }
+    },
+    {
+      "index": 9,
+      "file": "slide-10-closing.html",
+      "layout": "layout-closing",
+      "theme": "default",
+      "elements": {
+        "closingTitle": "함께 만들어갑시다.",
+        "closingSubtitle": "질문·피드백·협업 제안은 언제든 환영합니다."
+      }
+    }
+  ]
+}

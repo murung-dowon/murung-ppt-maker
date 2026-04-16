@@ -84,6 +84,86 @@
 
 
 /* ============================================================
+   테마 시스템 — .slide 에 theme-* 클래스를 추가해 배색 전환
+   사용법: <div class="slide layout-content theme-dark">
+   ============================================================ */
+
+/* ── theme-dark : 테크 다크 (기본 KIC 계열) ─────────────── */
+/* 배경: 거의 검정 / 포인트: 하늘색 / 폰트: Inter           */
+.slide.theme-dark {
+  --color-bg:           #0d0c0a;
+  --color-surface:      rgba(255, 255, 255, 0.03);
+  --color-surface-2:    rgba(255, 255, 255, 0.06);
+  --color-text:         #f0ede8;
+  --color-text-muted:   rgba(240, 237, 232, 0.5);
+  --color-text-light:   rgba(255, 255, 255, 0.25);
+  --color-accent:       #63b3ed;
+  --color-accent-dark:  #90cdf4;
+  --color-accent-light: rgba(99, 179, 237, 0.25);
+  --color-accent-bg:    rgba(99, 179, 237, 0.08);
+  --color-border:       rgba(255, 255, 255, 0.08);
+  --color-border-dark:  rgba(255, 255, 255, 0.15);
+  --font-sans:          'Inter', system-ui, sans-serif;
+}
+
+/* ── theme-tech : SaaS / 테크 딥 네이비 ─────────────────── */
+/* 배경: 딥 네이비 / 포인트: 사이언 / 폰트: Inter           */
+/* 어울리는 콘텐츠: SaaS IR, 테크 스타트업, 개발자 대상 발표 */
+.slide.theme-tech {
+  --color-bg:           #0f172a;
+  --color-surface:      #1e293b;
+  --color-surface-2:    #334155;
+  --color-text:         #f1f5f9;
+  --color-text-muted:   #94a3b8;
+  --color-text-light:   #64748b;
+  --color-accent:       #06b6d4;
+  --color-accent-dark:  #0891b2;
+  --color-accent-light: rgba(6, 182, 212, 0.2);
+  --color-accent-bg:    rgba(6, 182, 212, 0.08);
+  --color-border:       #1e293b;
+  --color-border-dark:  #334155;
+  --font-sans:          'Inter', system-ui, sans-serif;
+}
+
+/* ── theme-minimal : 에디토리얼 미니멀 ──────────────────── */
+/* 배경: 오프화이트 / 포인트: 거의 검정 / 폰트: 세리프 계열  */
+/* 어울리는 콘텐츠: 브랜드 발표, 기획서, 전략 문서           */
+.slide.theme-minimal {
+  --color-bg:           #fafaf9;
+  --color-surface:      #f5f5f4;
+  --color-surface-2:    #e7e5e4;
+  --color-text:         #0a0a0a;
+  --color-text-muted:   #57534e;
+  --color-text-light:   #a8a29e;
+  --color-accent:       #0a0a0a;
+  --color-accent-dark:  #000000;
+  --color-accent-light: #e7e5e4;
+  --color-accent-bg:    #f5f5f4;
+  --color-border:       #e7e5e4;
+  --color-border-dark:  #d6d3d1;
+  --font-sans:          'Georgia', 'Times New Roman', serif;
+}
+
+/* ── theme-warm : 따뜻한 스타트업 ───────────────────────── */
+/* 배경: 크림 / 포인트: 앰버 / 폰트: Noto Sans KR (기본)    */
+/* 어울리는 콘텐츠: 팀 공유, 사업 계획, 소비자향 발표        */
+.slide.theme-warm {
+  --color-bg:           #fffbeb;
+  --color-surface:      #fef3c7;
+  --color-surface-2:    #fde68a;
+  --color-text:         #1c1917;
+  --color-text-muted:   #78716c;
+  --color-text-light:   #a8a29e;
+  --color-accent:       #d97706;
+  --color-accent-dark:  #b45309;
+  --color-accent-light: rgba(217, 119, 6, 0.15);
+  --color-accent-bg:    rgba(217, 119, 6, 0.08);
+  --color-border:       #fde68a;
+  --color-border-dark:  #fbbf24;
+}
+
+
+/* ============================================================
    공통 인라인 컴포넌트 (슬라이드 안에서 자유롭게 사용)
    ============================================================ */
 

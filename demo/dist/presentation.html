@@ -1,0 +1,2127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>demo — Presentation</title>
+  <style>
+/* ── theme.css ────────────────────────────────── */
+/* ============================================================
+   theme.css — PPT Maker 디자인 시스템
+   이 파일 하나로 전체 발표자료의 색상·폰트·간격을 관리합니다.
+   ============================================================ */
+
+/* Google Fonts — Noto Sans KR */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap');
+
+:root {
+  /* ── 색상 ──────────────────────────────────────────────── */
+  --color-bg:           #ffffff;
+  --color-surface:      #f8f9fa;
+  --color-surface-2:    #f1f3f5;
+  --color-text:         #1a1a1a;
+  --color-text-muted:   #6b7280;
+  --color-text-light:   #9ca3af;
+  --color-accent:       #2563eb;        /* ← 이 한 줄로 포인트 색상 전체 변경 */
+  --color-accent-dark:  #1d4ed8;
+  --color-accent-light: #dbeafe;
+  --color-accent-bg:    #eff6ff;
+  --color-border:       #e5e7eb;
+  --color-border-dark:  #d1d5db;
+  --color-white:        #ffffff;
+  --color-black:        #000000;
+
+  /* ── 폰트 패밀리 ───────────────────────────────────────── */
+  --font-sans: 'Noto Sans KR', -apple-system, BlinkMacSystemFont,
+               'Segoe UI', sans-serif;
+
+  /* ── 폰트 크기 (슬라이드 기준, 1280×720) ──────────────── */
+  --font-size-display:  72px;
+  --font-size-h1:       52px;
+  --font-size-h2:       38px;
+  --font-size-h3:       28px;
+  --font-size-h4:       22px;
+  --font-size-body:     20px;
+  --font-size-small:    16px;
+  --font-size-xs:       13px;
+
+  /* ── 폰트 굵기 ─────────────────────────────────────────── */
+  --font-weight-light:   300;
+  --font-weight-regular: 400;
+  --font-weight-medium:  500;
+  --font-weight-semibold:600;
+  --font-weight-bold:    700;
+  --font-weight-black:   900;
+
+  /* ── 줄 높이 ───────────────────────────────────────────── */
+  --line-height-tight:  1.2;
+  --line-height-normal: 1.6;
+  --line-height-loose:  1.9;
+
+  /* ── 자간 ──────────────────────────────────────────────── */
+  --letter-spacing-tight: -0.03em;
+  --letter-spacing-normal: -0.01em;
+  --letter-spacing-wide:   0.05em;
+
+  /* ── 간격 ──────────────────────────────────────────────── */
+  --space-xs:   8px;
+  --space-sm:   16px;
+  --space-md:   24px;
+  --space-lg:   40px;
+  --space-xl:   64px;
+  --space-2xl:  96px;
+
+  /* ── 슬라이드 크기 ─────────────────────────────────────── */
+  --slide-w: 1280px;
+  --slide-h: 720px;
+
+  /* ── 테두리·그림자·반지름 ──────────────────────────────── */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-full: 9999px;
+  --shadow-sm:   0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md:   0 4px 12px rgba(0,0,0,.10), 0 2px 4px rgba(0,0,0,.06);
+  --shadow-lg:   0 10px 30px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+
+  /* ── 애니메이션 ─────────────────────────────────────────── */
+  --transition-fast:   0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-slow:   0.4s ease;
+}
+
+
+/* ============================================================
+   공통 인라인 컴포넌트 (슬라이드 안에서 자유롭게 사용)
+   ============================================================ */
+
+/* 강조 텍스트 */
+.highlight {
+  color: var(--color-accent);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* 배경 강조 */
+.highlight-bg {
+  background: var(--color-accent-light);
+  color: var(--color-accent-dark);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+/* 칩 (태그형) */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+.chip.accent {
+  background: var(--color-accent-bg);
+  color: var(--color-accent);
+  border-color: var(--color-accent-light);
+}
+
+/* 콜아웃 박스 */
+.callout {
+  padding: var(--space-sm) var(--space-md);
+  border-left: 4px solid var(--color-accent);
+  background: var(--color-accent-bg);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  color: var(--color-text);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-normal);
+}
+
+/* 구분선 */
+.divider {
+  width: 48px;
+  height: 3px;
+  background: var(--color-accent);
+  border-radius: var(--radius-full);
+  margin: var(--space-sm) 0;
+}
+
+.divider.full {
+  width: 100%;
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* 넘버링 배지 */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  color: var(--color-white);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-bold);
+  flex-shrink: 0;
+}
+
+.badge.lg {
+  width: 56px;
+  height: 56px;
+  font-size: var(--font-size-h4);
+}
+
+/* 카드 */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.card.accent {
+  background: var(--color-accent-bg);
+  border-color: var(--color-accent-light);
+}
+
+/* 이미지 플레이스홀더 */
+.img-placeholder {
+  background: var(--color-surface-2);
+  border: 2px dashed var(--color-border-dark);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-light);
+  font-size: var(--font-size-small);
+}
+
+
+/* ── slide-base.css ───────────────────────────── */
+/* ============================================================
+   slide-base.css — 슬라이드 뷰포트, 스케일링, 레이아웃 클래스
+   ============================================================ */
+
+/* ── 전체 초기화 ────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #e8e8e8;
+}
+
+/* ── 슬라이드 바디 ─────────────────────────────────────── */
+.slide-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background: #e8e8e8;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── 슬라이드 캔버스 (1280×720 고정, 화면 맞춤 스케일) ── */
+.slide {
+  position: relative;
+  width: var(--slide-w);
+  height: var(--slide-h);
+  background: var(--color-bg);
+  overflow: hidden;
+  box-shadow: none;
+  flex-shrink: 0;
+}
+
+/* JavaScript로 scale 값 주입: .slide { transform: scale(X); transform-origin: center center; } */
+
+
+/* ============================================================
+   레이아웃 클래스 — 각 슬라이드 용도에 맞게 .slide에 추가
+   ============================================================ */
+
+/* ── 공통 슬라이드 패딩 ─────────────────────────────────── */
+.slide {
+  padding: 64px 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── layout-title : 대형 타이틀 슬라이드 ───────────────── */
+.slide.layout-title {
+  align-items: flex-start;
+  justify-content: center;
+  padding: 80px 100px;
+  background: var(--color-bg);
+}
+
+.slide.layout-title .slide-eyebrow {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+}
+
+.slide.layout-title .slide-title {
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-black);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text);
+  max-width: 880px;
+  margin-bottom: var(--space-lg);
+}
+
+.slide.layout-title .slide-subtitle {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-light);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-normal);
+  max-width: 640px;
+  margin-bottom: var(--space-xl);
+}
+
+.slide.layout-title .slide-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-small);
+  color: var(--color-text-light);
+}
+
+/* 우측 하단 대형 장식 원 */
+.slide.layout-title::after {
+  content: '';
+  position: absolute;
+  right: -120px;
+  bottom: -120px;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: var(--color-accent-bg);
+  pointer-events: none;
+}
+
+
+/* ── layout-section : 섹션 구분 슬라이드 ───────────────── */
+.slide.layout-section {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--color-accent);
+}
+
+.slide.layout-section .section-number {
+  font-size: 120px;
+  font-weight: var(--font-weight-black);
+  color: rgba(255, 255, 255, 0.12);
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  user-select: none;
+  pointer-events: none;
+}
+
+.slide.layout-section .section-label {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: var(--space-sm);
+  position: relative;
+  z-index: 1;
+}
+
+.slide.layout-section .section-title {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  position: relative;
+  z-index: 1;
+}
+
+.slide.layout-section .section-desc {
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-regular);
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: var(--space-md);
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ── layout-content : 일반 콘텐츠 슬라이드 ─────────────── */
+.slide.layout-content .slide-title {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+}
+
+.slide.layout-content .slide-title-bar {
+  width: 40px;
+  height: 4px;
+  background: var(--color-accent);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-lg);
+}
+
+.slide.layout-content .slide-body-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 불릿 리스트 */
+.slide-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.slide-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+}
+
+.slide-list li::before {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+.slide-list.numbered {
+  counter-reset: slide-counter;
+}
+
+.slide-list.numbered li::before {
+  counter-increment: slide-counter;
+  content: counter(slide-counter);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: white;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+  flex-shrink: 0;
+}
+
+
+/* ── layout-two-col : 2단 분할 슬라이드 ────────────────── */
+.slide.layout-two-col .slide-title {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+}
+
+.slide.layout-two-col .slide-title-bar {
+  width: 40px;
+  height: 4px;
+  background: var(--color-accent);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-lg);
+}
+
+.slide.layout-two-col .two-col {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.slide.layout-two-col .two-col.ratio-6-4 {
+  grid-template-columns: 6fr 4fr;
+}
+
+.slide.layout-two-col .two-col.ratio-4-6 {
+  grid-template-columns: 4fr 6fr;
+}
+
+.col-title {
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+}
+
+
+/* ── layout-quote : 인용구 슬라이드 ────────────────────── */
+.slide.layout-quote {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 120px;
+}
+
+.slide.layout-quote .quote-mark {
+  font-size: 120px;
+  line-height: 0.8;
+  color: var(--color-accent-light);
+  font-family: Georgia, serif;
+  margin-bottom: var(--space-md);
+}
+
+.slide.layout-quote .quote-text {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text);
+  max-width: 880px;
+  margin-bottom: var(--space-lg);
+}
+
+.slide.layout-quote .quote-author {
+  font-size: var(--font-size-body);
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-medium);
+}
+
+.slide.layout-quote .quote-source {
+  font-size: var(--font-size-small);
+  color: var(--color-text-light);
+  margin-top: var(--space-xs);
+}
+
+
+/* ── layout-image : 전체 이미지 슬라이드 ───────────────── */
+.slide.layout-image {
+  padding: 0;
+  overflow: hidden;
+}
+
+.slide.layout-image .slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide.layout-image .image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-xl) var(--space-xl) var(--space-lg);
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+}
+
+.slide.layout-image .image-caption {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  line-height: var(--line-height-tight);
+}
+
+.slide.layout-image .image-subcaption {
+  font-size: var(--font-size-body);
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: var(--space-xs);
+}
+
+
+/* ── layout-closing : 마무리 슬라이드 ──────────────────── */
+.slide.layout-closing {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--color-text);
+}
+
+.slide.layout-closing .closing-title {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-black);
+  color: var(--color-white);
+  letter-spacing: var(--letter-spacing-tight);
+  margin-bottom: var(--space-md);
+}
+
+.slide.layout-closing .closing-subtitle {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-light);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.slide.layout-closing .closing-contact {
+  margin-top: var(--space-xl);
+  font-size: var(--font-size-body);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+
+/* ============================================================
+   공통 슬라이드 헤더 (선택 사용)
+   ============================================================ */
+.slide-header {
+  position: absolute;
+  top: 28px;
+  left: 80px;
+  right: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.slide-logo {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text-light);
+}
+
+.slide-tag {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-light);
+  background: var(--color-surface-2);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+
+/* ============================================================
+   슬라이드 네비게이션 UI
+   ============================================================ */
+#slide-nav {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+body:hover #slide-nav {
+  opacity: 1;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  backdrop-filter: blur(8px);
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.nav-btn:hover {
+  background: rgba(0, 0, 0, 0.85);
+  transform: scale(1.08);
+}
+
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+  transform: none;
+}
+
+.nav-counter {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(8px);
+  min-width: 64px;
+  text-align: center;
+}
+
+
+/* ============================================================
+   @media print — PDF 내보내기
+   Ctrl+P (또는 Cmd+P) → 레이아웃: 가로 → PDF로 저장
+   ============================================================ */
+@media print {
+  /* 페이지 설정: 16:9 비율 */
+  @page {
+    size: 1280px 720px;
+    margin: 0;
+  }
+
+  /* 배경색·이미지 강제 출력 — "배경 그래픽" 옵션 체크 없이도 적용 */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  html, body {
+    width: 1280px;
+    height: 720px;
+    overflow: visible;
+    background: white;
+  }
+
+  /* 슬라이드 바디 — 중앙 정렬 해제 */
+  .slide-body {
+    display: block;
+    width: 1280px;
+    height: 720px;
+    background: white;
+    padding-top: 0 !important;
+  }
+
+  /* 슬라이드 캔버스 — scale·shadow·outline 제거 */
+  .slide {
+    transform: none !important;
+    width: 1280px !important;
+    height: 720px !important;
+    box-shadow: none !important;
+    outline: none !important;
+    position: relative;
+  }
+
+  /* 네비게이션·편집기 UI 숨김 */
+  #slide-nav,
+  #editor-toggle,
+  #editor-toolbar,
+  #anim-panel,
+  #editor-toast {
+    display: none !important;
+  }
+}
+
+
+/* ── editor.css ───────────────────────────────── */
+/* ============================================================
+   editor.css — 브라우저 인라인 편집기 UI 스타일 (상단 가로 툴바)
+   ============================================================ */
+
+/* ── 편집 모드 토글 버튼 (비활성 시 우측 상단 플로팅) ───── */
+#editor-toggle {
+  position: fixed;
+  top: 12px;
+  right: 16px;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.52);
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: opacity 0.2s, background 0.2s;
+  opacity: 0;
+  white-space: nowrap;
+}
+
+body:hover #editor-toggle {
+  opacity: 1;
+}
+
+#editor-toggle:hover {
+  background: rgba(0, 0, 0, 0.78);
+}
+
+/* 편집 활성 시 토글 버튼은 툴바 안으로 숨김 */
+body.editor-active #editor-toggle {
+  display: none;
+}
+
+#editor-toggle .toggle-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+
+/* ── 상단 가로 툴바 ─────────────────────────────────────── */
+#editor-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 300;
+  display: none;
+  align-items: center;
+  gap: 0;
+  height: 48px;
+  padding: 0 12px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+/* 스크롤바 숨김 */
+#editor-toolbar::-webkit-scrollbar { display: none; }
+
+body.editor-active #editor-toolbar {
+  display: flex;
+}
+
+/* 편집 모드 활성화 시 슬라이드를 툴바 아래로 */
+body.editor-active .slide-body {
+  padding-top: 48px;
+  height: calc(100vh - 48px);
+  box-sizing: border-box;
+}
+
+/* 툴바 섹션 — 가로 배치 */
+.toolbar-section {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 0 8px;
+  flex-shrink: 0;
+}
+
+/* 섹션 라벨 (작은 회색 텍스트) */
+.toolbar-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #d1d5db;
+  margin-right: 4px;
+  white-space: nowrap;
+}
+
+/* 섹션 구분 세로선 */
+.toolbar-divider {
+  width: 1px;
+  height: 24px;
+  background: #e5e7eb;
+  flex-shrink: 0;
+  margin: 0 2px;
+}
+
+/* 툴바 행 (기존 구조 호환) */
+.toolbar-row {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+/* ── 버튼 ──────────────────────────────────────────────── */
+.tb-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  min-width: 30px;
+  padding: 0 6px;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  transition: background 0.12s;
+  font-family: var(--font-sans);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tb-btn:hover  { background: #f3f4f6; }
+.tb-btn.active { background: #dbeafe; color: #2563eb; }
+
+/* ── 인풋/컬러 ─────────────────────────────────────────── */
+.tb-input {
+  width: 48px;
+  height: 30px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 0 6px;
+  font-size: 12px;
+  font-family: var(--font-sans);
+  color: #374151;
+  text-align: center;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.tb-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.tb-color {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 2px;
+  cursor: pointer;
+  background: white;
+  flex-shrink: 0;
+}
+
+/* ── 편집 모드 닫기 버튼 (툴바 우측 끝) ─────────────────── */
+#tb-close {
+  margin-left: auto;
+  color: #9ca3af;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+#tb-close:hover { background: #fee2e2; color: #ef4444; }
+
+
+/* ── 편집 모드 활성 시 슬라이드 강조 ───────────────────── */
+/* 슬라이드 자체 outline 제거 — 툴바로 편집 상태 충분히 인지 가능 */
+
+body.editor-active [data-editable]:hover {
+  outline: 1.5px dashed rgba(37, 99, 235, 0.5);
+  outline-offset: 2px;
+  cursor: text;
+  border-radius: 2px;
+}
+
+body.editor-active [data-editable]:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  background: rgba(37, 99, 235, 0.03);
+  border-radius: 2px;
+}
+
+
+/* ── 애니메이션 드롭다운 ────────────────────────────────── */
+#anim-panel {
+  position: fixed;
+  top: 48px;
+  z-index: 400;
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  min-width: 160px;
+}
+
+#anim-panel.open {
+  display: flex;
+}
+
+.anim-title {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin-bottom: 2px;
+  padding: 0 4px;
+}
+
+.anim-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  color: #374151;
+  font-family: var(--font-sans);
+  transition: background 0.12s;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.anim-btn:hover { background: #f3f4f6; color: #2563eb; }
+.anim-btn .anim-icon { font-size: 15px; width: 18px; text-align: center; }
+
+
+/* ── 리사이즈 핸들 ─────────────────────────────────────── */
+.editor-selected {
+  outline: 2px solid #2563eb !important;
+  outline-offset: 0 !important;
+  position: relative;
+}
+
+.resize-handle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border: 2px solid #2563eb;
+  border-radius: 2px;
+  z-index: 300;
+}
+
+.resize-handle.nw { top: -5px;  left: -5px;  cursor: nw-resize; }
+.resize-handle.n  { top: -5px;  left: 50%;   transform: translateX(-50%); cursor: n-resize; }
+.resize-handle.ne { top: -5px;  right: -5px; cursor: ne-resize; }
+.resize-handle.e  { top: 50%;   right: -5px; transform: translateY(-50%); cursor: e-resize; }
+.resize-handle.se { bottom: -5px; right: -5px; cursor: se-resize; }
+.resize-handle.s  { bottom: -5px; left: 50%; transform: translateX(-50%); cursor: s-resize; }
+.resize-handle.sw { bottom: -5px; left: -5px; cursor: sw-resize; }
+.resize-handle.w  { top: 50%;   left: -5px;  transform: translateY(-50%); cursor: w-resize; }
+
+
+/* ── 토스트 ────────────────────────────────────────────── */
+#editor-toast {
+  position: fixed;
+  bottom: 72px;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 500;
+}
+
+#editor-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+
+/* ── 애니메이션 프리셋 ─────────────────────────────────── */
+@keyframes anim-fade-in    { from { opacity: 0; }                              to { opacity: 1; } }
+@keyframes anim-slide-left { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes anim-slide-up   { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes anim-zoom-up    { from { opacity: 0; transform: scale(0.85); }      to { opacity: 1; transform: scale(1); } }
+@keyframes anim-bounce     { 0% { opacity: 0; transform: scale(0.7); } 60% { transform: scale(1.05); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes anim-flip       { from { opacity: 0; transform: rotateY(-30deg); }  to { opacity: 1; transform: rotateY(0); } }
+@keyframes anim-blur-in    { from { opacity: 0; filter: blur(12px); }          to { opacity: 1; filter: blur(0); } }
+
+[data-anim="fade-in"]    { animation: anim-fade-in    0.5s ease both; }
+[data-anim="slide-left"] { animation: anim-slide-left 0.5s ease both; }
+[data-anim="slide-up"]   { animation: anim-slide-up   0.5s ease both; }
+[data-anim="zoom-up"]    { animation: anim-zoom-up    0.5s ease both; }
+[data-anim="bounce"]     { animation: anim-bounce      0.6s ease both; }
+[data-anim="flip"]       { animation: anim-flip        0.5s ease both; }
+[data-anim="blur-in"]    { animation: anim-blur-in     0.5s ease both; }
+
+[data-delay="1"] { animation-delay: 0.1s; }
+[data-delay="2"] { animation-delay: 0.2s; }
+[data-delay="3"] { animation-delay: 0.3s; }
+[data-delay="4"] { animation-delay: 0.4s; }
+[data-delay="5"] { animation-delay: 0.5s; }
+[data-delay="6"] { animation-delay: 0.6s; }
+[data-delay="7"] { animation-delay: 0.7s; }
+[data-delay="8"] { animation-delay: 0.8s; }
+
+
+/* ── 빌드된 발표용 추가 스타일 ─────────────────── */
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.slide-wrapper {
+  display: none;
+  position: fixed;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  background: #e8e8e8;
+}
+
+.slide-wrapper.active {
+  display: flex;
+}
+
+/* 슬라이드 진입 애니메이션 */
+.slide-wrapper.active .slide {
+  animation: slide-enter 0.25s ease;
+}
+
+@keyframes slide-enter {
+  from { opacity: 0; transform: scale(0.98); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── 인쇄(PDF) 모드 — 슬라이드 1장 = 1페이지 ─── */
+@media print {
+  @page {
+    size: 1280px 720px;
+    margin: 0;
+  }
+
+  html, body {
+    width: 1280px;
+    height: auto;
+    overflow: visible;
+    background: white;
+  }
+
+  /* 발표 모드 래퍼 해제: 모든 슬라이드를 순서대로 출력 */
+  .slide-wrapper {
+    display: block !important;
+    position: relative !important;
+    width: 1280px;
+    height: 720px;
+    page-break-after: always;
+    break-after: page;
+    background: white;
+  }
+
+  .slide {
+    transform: none !important;
+    width: 1280px !important;
+    height: 720px !important;
+    box-shadow: none;
+  }
+
+  #slide-nav,
+  #editor-toggle,
+  #editor-toolbar,
+  #anim-panel,
+  #editor-toast {
+    display: none !important;
+  }
+}
+  </style>
+</head>
+<body class="slide-body">
+
+
+  <!-- Slide 1: Title -->
+  <div class="slide-wrapper active" data-slide="0" data-file="slide-01-title.html">
+    <div class="slide layout-title">
+
+    <!-- 장식 요소 -->
+    <div class="deco-circle-sm"></div>
+    <div class="deco-dot-grid">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <p class="slide-eyebrow" data-anim="fade-in" data-delay="1">PRODUCT STRATEGY · 2026</p>
+
+    <h1 class="slide-title" data-anim="slide-up" data-delay="2">
+      Building for the<br>
+      <span class="highlight">Next Decade</span>
+    </h1>
+
+    <p class="slide-subtitle" data-anim="fade-in" data-delay="3">
+      A framework for sustainable growth through design,<br>
+      data, and cross-functional collaboration.
+    </p>
+
+    <div class="meta-row" data-anim="fade-in" data-delay="4">
+      <div class="slide-meta">April 2026</div>
+      <div class="meta-divider"></div>
+      <div class="slide-meta">Strategy Team</div>
+      <div class="meta-divider"></div>
+      <span class="chip accent">CONFIDENTIAL</span>
+    </div>
+
+  </div>
+  </div>
+
+  <!-- Slide 2: Section 01 -->
+  <div class="slide-wrapper" data-slide="1" data-file="slide-02-section.html">
+    <div class="slide layout-section">
+
+    <div class="section-number" data-anim="fade-in" data-delay="1">01</div>
+
+    <p class="section-label" data-anim="fade-in" data-delay="2">Chapter One</p>
+    <h2 class="section-title" data-anim="slide-up" data-delay="3">Where We Are Today</h2>
+    <p class="section-desc" data-anim="fade-in" data-delay="4">
+      현황 진단 · 문제 정의 · 기회 발견
+    </p>
+
+  </div>
+  </div>
+
+  <!-- Slide 3: Content List -->
+  <div class="slide-wrapper" data-slide="2" data-file="slide-03-content.html">
+    <div class="slide layout-content">
+
+    <!-- 슬라이드 헤더 -->
+    <div class="slide-header" data-anim="fade-in">
+      <span class="slide-logo">Demo Deck</span>
+      <span class="slide-tag">Chapter 01</span>
+    </div>
+
+    <h1 class="slide-title" data-anim="slide-up" data-delay="1">세 가지 핵심 과제</h1>
+    <div class="slide-title-bar" data-anim="fade-in" data-delay="1"></div>
+
+    <div class="slide-body-content">
+      <ul class="slide-list numbered" data-anim="slide-up" data-delay="2">
+        <li>
+          <div class="item-body">
+            <div class="item-title">사용자 리텐션 저하</div>
+            <div class="item-desc">첫 달 이탈률이 전년 대비 18% 증가했으며, 핵심 기능 미사용 비율이 높게 나타남. 온보딩 경험 개선이 시급함.</div>
+          </div>
+        </li>
+        <li>
+          <div class="item-body">
+            <div class="item-title">팀 간 커뮤니케이션 비효율</div>
+            <div class="item-desc">제품·디자인·엔지니어링 간 컨텍스트 공유 지연으로 스프린트 지연이 반복됨. 공통 언어와 프로세스 정립 필요.</div>
+          </div>
+        </li>
+        <li>
+          <div class="item-body">
+            <div class="item-title">데이터 기반 의사결정 부재</div>
+            <div class="item-desc">주요 의사결정의 72%가 직관에 의존. 측정 가능한 지표 체계와 대시보드 구축이 전략 실행의 선결 조건.</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="callout" data-anim="fade-in" data-delay="3" style="margin-top: var(--space-lg);">
+        세 과제 모두 <strong>사람·프로세스·도구</strong>의 정렬 문제로 귀결됩니다.
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <!-- Slide 4: KPI Stats -->
+  <div class="slide-wrapper" data-slide="3" data-file="slide-04-stats.html">
+    <div class="slide layout-content">
+
+    <div class="slide-header" data-anim="fade-in">
+      <span class="slide-logo">Demo Deck</span>
+      <span class="slide-tag">Key Metrics</span>
+    </div>
+
+    <h1 class="slide-title" data-anim="slide-up" data-delay="1">핵심 성과 지표</h1>
+    <div class="slide-title-bar" data-anim="fade-in" data-delay="1"></div>
+
+    <div class="kpi-grid">
+
+      <div class="kpi-card blue" data-anim="zoom-up" data-delay="2">
+        <div class="kpi-number">84%</div>
+        <div class="kpi-label">월간 사용자 리텐션</div>
+        <div class="kpi-sub">최근 30일 기준<br>전체 활성 유저 대상</div>
+        <div class="kpi-trend trend-up">↑ 12% vs 전분기</div>
+      </div>
+
+      <div class="kpi-card green" data-anim="zoom-up" data-delay="3">
+        <div class="kpi-number">2.3×</div>
+        <div class="kpi-label">기능 도입 속도 개선</div>
+        <div class="kpi-sub">신규 피처 온보딩 완료<br>소요 시간 단축</div>
+        <div class="kpi-trend trend-up">↑ Q1 → Q2 비교</div>
+      </div>
+
+      <div class="kpi-card orange" data-anim="zoom-up" data-delay="4">
+        <div class="kpi-number">$12M</div>
+        <div class="kpi-label">연간 반복 매출 (ARR)</div>
+        <div class="kpi-sub">엔터프라이즈 계약 포함<br>2026 H1 기준</div>
+        <div class="kpi-trend trend-up">↑ 38% YoY</div>
+      </div>
+
+    </div>
+
+  </div>
+  </div>
+
+  <!-- Slide 5: Two Column -->
+  <div class="slide-wrapper" data-slide="4" data-file="slide-05-two-col.html">
+    <div class="slide layout-two-col">
+
+    <div class="slide-header" data-anim="fade-in">
+      <span class="slide-logo">Demo Deck</span>
+      <span class="slide-tag">Strategy</span>
+    </div>
+
+    <h1 class="slide-title" data-anim="slide-up" data-delay="1">우리가 집중해야 할 것</h1>
+    <div class="slide-title-bar" data-anim="fade-in" data-delay="1"></div>
+
+    <div class="two-col ratio-6-4">
+
+      <!-- 왼쪽: 텍스트 -->
+      <div data-anim="fade-in" data-delay="2">
+        <p class="col-title">배경</p>
+        <p class="body-text">
+          지난 2년간의 데이터를 분석한 결과, 사용자 성장의 병목은 기능이 아니라
+          <span class="highlight">경험의 일관성</span>에 있다는 결론에 도달했습니다.
+        </p>
+        <p class="body-text">
+          가장 빠르게 성장한 코호트는 첫 주 안에 핵심 기능을 3개 이상 활성화한 그룹으로,
+          이들의 90일 리텐션은 평균 <span class="highlight">2.4배 높았습니다</span>.
+        </p>
+
+        <div class="tag-row">
+          <span class="chip accent">온보딩 최적화</span>
+          <span class="chip accent">코어 루프 강화</span>
+          <span class="chip accent">데이터 피드백</span>
+        </div>
+      </div>
+
+      <!-- 오른쪽: 인사이트 카드 스택 -->
+      <div class="right-stack" data-anim="slide-up" data-delay="3">
+        <div class="insight-card">
+          <div class="insight-icon">🎯</div>
+          <div class="insight-text">
+            <div class="label">Focus Area #1</div>
+            <div class="desc">첫 7일 온보딩 플로우 재설계 — 핵심 액션 3개로 단순화</div>
+          </div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon">📊</div>
+          <div class="insight-text">
+            <div class="label">Focus Area #2</div>
+            <div class="desc">제품 내 분석 대시보드 제공 — 사용자 셀프 인사이트 유도</div>
+          </div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon">🔗</div>
+          <div class="insight-text">
+            <div class="label">Focus Area #3</div>
+            <div class="desc">팀 협업 기능 강화 — 개인→팀 전환 시 이탈 방지</div>
+          </div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon">⚡</div>
+          <div class="insight-text">
+            <div class="label">Focus Area #4</div>
+            <div class="desc">성능 개선 — p95 응답 속도 800ms 이하 목표</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  </div>
+
+  <!-- Slide 6: Quote -->
+  <div class="slide-wrapper" data-slide="5" data-file="slide-06-quote.html">
+    <div class="slide layout-quote">
+
+    <div class="quote-mark" data-anim="fade-in" data-delay="1">"</div>
+
+    <p class="quote-text" data-anim="slide-up" data-delay="2">
+      사람들은 디자인이 어떻게 생겼는지에 관한 것이라 생각합니다.<br>
+      하지만 더 깊이 들어가면, 디자인은 <span class="highlight">작동 방식</span>에 관한 것입니다.
+    </p>
+
+    <div class="accent-line" data-anim="fade-in" data-delay="3"></div>
+
+    <p class="quote-author" data-anim="fade-in" data-delay="3">Steve Jobs</p>
+    <p class="quote-source" data-anim="fade-in" data-delay="4">New York Times, 2003</p>
+
+  </div>
+  </div>
+
+  <!-- Slide 7: Timeline -->
+  <div class="slide-wrapper" data-slide="6" data-file="slide-07-timeline.html">
+    <div class="slide layout-content">
+
+    <div class="slide-header" data-anim="fade-in">
+      <span class="slide-logo">Demo Deck</span>
+      <span class="slide-tag">Roadmap</span>
+    </div>
+
+    <h1 class="slide-title" data-anim="slide-up" data-delay="1">2026 실행 로드맵</h1>
+    <div class="slide-title-bar" data-anim="fade-in" data-delay="1"></div>
+
+    <div class="timeline-wrapper" data-anim="fade-in" data-delay="2">
+      <div class="timeline-line"></div>
+      <div class="timeline-steps">
+
+        <div class="step done" data-anim="slide-up" data-delay="2">
+          <div class="step-dot">✓</div>
+          <span class="status-badge badge-done">완료</span>
+          <div class="step-quarter">Q1 · Jan–Mar</div>
+          <div class="step-title">기반 구축</div>
+          <ul class="step-items">
+            <li>디자인 시스템 정립</li>
+            <li>데이터 파이프라인 설계</li>
+            <li>팀 온보딩 완료</li>
+          </ul>
+        </div>
+
+        <div class="step active" data-anim="slide-up" data-delay="3">
+          <div class="step-dot">→</div>
+          <span class="status-badge badge-active">진행 중</span>
+          <div class="step-quarter">Q2 · Apr–Jun</div>
+          <div class="step-title">핵심 기능 출시</div>
+          <ul class="step-items">
+            <li>온보딩 플로우 개선</li>
+            <li>대시보드 v1 배포</li>
+            <li>베타 고객 피드백</li>
+          </ul>
+        </div>
+
+        <div class="step upcoming" data-anim="slide-up" data-delay="4">
+          <div class="step-dot">3</div>
+          <span class="status-badge badge-upcoming">예정</span>
+          <div class="step-quarter">Q3 · Jul–Sep</div>
+          <div class="step-title">성장 가속</div>
+          <ul class="step-items">
+            <li>협업 기능 출시</li>
+            <li>엔터프라이즈 영업 시작</li>
+            <li>퍼포먼스 최적화</li>
+          </ul>
+        </div>
+
+        <div class="step upcoming" data-anim="slide-up" data-delay="5">
+          <div class="step-dot">4</div>
+          <span class="status-badge badge-upcoming">예정</span>
+          <div class="step-quarter">Q4 · Oct–Dec</div>
+          <div class="step-title">글로벌 확장</div>
+          <ul class="step-items">
+            <li>다국어 지원 출시</li>
+            <li>파트너십 체결</li>
+            <li>연간 목표 리뷰</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <!-- Slide 8: Comparison -->
+  <div class="slide-wrapper" data-slide="7" data-file="slide-08-compare.html">
+    <div class="slide layout-content">
+
+    <div class="slide-header" data-anim="fade-in">
+      <span class="slide-logo">Demo Deck</span>
+      <span class="slide-tag">Before / After</span>
+    </div>
+
+    <h1 class="slide-title" data-anim="slide-up" data-delay="1">개선 전후 비교</h1>
+    <div class="slide-title-bar" data-anim="fade-in" data-delay="1"></div>
+
+    <div class="compare-wrapper">
+      <div class="compare-grid">
+
+        <!-- Before -->
+        <div class="compare-col before" data-anim="fade-in" data-delay="2">
+          <div class="col-header">
+            <span class="col-badge before">Before</span>
+            <span class="col-heading">기존 방식</span>
+          </div>
+
+          <div class="compare-item">
+            <span class="icon">❌</span>
+            <div>
+              <div class="item-label">수동 리포팅</div>
+              <div class="item-sub">매주 스프레드시트 수작업, 데이터 불일치 빈발</div>
+            </div>
+          </div>
+          <div class="compare-item">
+            <span class="icon">❌</span>
+            <div>
+              <div class="item-label">사일로된 팀</div>
+              <div class="item-sub">각 팀이 별도 툴 사용, 컨텍스트 전달에 2~3일 소요</div>
+            </div>
+          </div>
+          <div class="compare-item">
+            <span class="icon">❌</span>
+            <div>
+              <div class="item-label">직관 기반 의사결정</div>
+              <div class="item-sub">데이터 없이 경험에 의존, 검증 주기 없음</div>
+            </div>
+          </div>
+          <div class="compare-item">
+            <span class="icon">❌</span>
+            <div>
+              <div class="item-label">느린 배포 주기</div>
+              <div class="item-sub">평균 6주 릴리즈 사이클, 고객 피드백 반영 지연</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- After -->
+        <div class="compare-col after" data-anim="fade-in" data-delay="3">
+          <div class="col-header">
+            <span class="col-badge after">After</span>
+            <span class="col-heading" style="color:var(--color-accent);">새로운 방식</span>
+          </div>
+
+          <div class="compare-item">
+            <span class="icon">✅</span>
+            <div>
+              <div class="item-label">실시간 대시보드</div>
+              <div class="item-sub">자동 집계 및 알림, 단일 소스 오브 트루스 확보</div>
+            </div>
+          </div>
+          <div class="compare-item">
+            <span class="icon">✅</span>
+            <div>
+              <div class="item-label">통합 협업 플랫폼</div>
+              <div class="item-sub">모든 팀이 동일한 컨텍스트로 실시간 협업</div>
+            </div>
+          </div>
+          <div class="compare-item">
+            <span class="icon">✅</span>
+            <div>
+              <div class="item-label">데이터 기반 실험</div>
+              <div class="item-sub">A/B 테스트 자동화, 주 단위 인사이트 리뷰</div>
+            </div>
+          </div>
+          <div class="compare-item">
+            <span class="icon">✅</span>
+            <div>
+              <div class="item-label">2주 스프린트 배포</div>
+              <div class="item-sub">지속적 딜리버리 체계, 고객 피드백 즉시 반영</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="vs-divider">VS</div>
+    </div>
+
+  </div>
+  </div>
+
+  <!-- Slide 9: Section 02 -->
+  <div class="slide-wrapper" data-slide="8" data-file="slide-09-section2.html">
+    <div class="slide layout-section">
+
+    <div class="deco-grid">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="section-number" data-anim="fade-in" data-delay="1">02</div>
+
+    <p class="section-label" data-anim="fade-in" data-delay="2">Chapter Two</p>
+    <h2 class="section-title" data-anim="slide-up" data-delay="3">The Path Forward</h2>
+    <p class="section-desc" data-anim="fade-in" data-delay="4">
+      전략 수립 · 우선순위 결정 · 실행 계획
+    </p>
+
+  </div>
+  </div>
+
+  <!-- Slide 10: Closing -->
+  <div class="slide-wrapper" data-slide="9" data-file="slide-10-closing.html">
+    <div class="slide layout-closing">
+
+    <p class="closing-kicker" data-anim="fade-in" data-delay="1">Product Strategy 2026</p>
+
+    <h1 class="closing-title" data-anim="slide-up" data-delay="2">
+      함께 만들어갑시다.
+    </h1>
+    <p class="closing-subtitle" data-anim="fade-in" data-delay="3">
+      질문·피드백·협업 제안은 언제든 환영합니다.
+    </p>
+
+    <div class="closing-divider" data-anim="fade-in" data-delay="3"></div>
+
+    <div class="contact-grid" data-anim="fade-in" data-delay="4">
+      <div class="contact-item">
+        <span class="contact-label">Team</span>
+        <span class="contact-value">Strategy & Growth</span>
+      </div>
+      <div class="contact-sep"></div>
+      <div class="contact-item">
+        <span class="contact-label">Email</span>
+        <span class="contact-value">strategy@company.com</span>
+      </div>
+      <div class="contact-sep"></div>
+      <div class="contact-item">
+        <span class="contact-label">Notion</span>
+        <span class="contact-value">notion.so/strategy-2026</span>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+<!-- 발표용 네비게이션 스크립트 -->
+<script>
+(function() {
+  const total = 10;
+  let current = 0;
+  const wrappers = document.querySelectorAll('.slide-wrapper');
+
+  // 스케일 조정
+  function scaleSlides() {
+    const scaleX = (window.innerWidth - 32) / 1280;
+    const scaleY = (window.innerHeight - 32) / 720;
+    const scale = Math.min(scaleX, scaleY);
+    document.querySelectorAll('.slide').forEach(s => {
+      s.style.transform = 'scale(' + scale + ')';
+      s.style.transformOrigin = 'center center';
+    });
+  }
+
+  window.addEventListener('resize', scaleSlides);
+  scaleSlides();
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= total) return;
+    wrappers[current].classList.remove('active');
+    current = idx;
+    wrappers[current].classList.add('active');
+    updateNav();
+    scaleSlides();
+  }
+
+  // 네비게이션 UI 생성
+  const nav = document.createElement('div');
+  nav.id = 'slide-nav';
+  nav.innerHTML =
+    '<button class="nav-btn" id="nav-prev">&#8592;</button>' +
+    '<span class="nav-counter" id="nav-counter">1 / 10</span>' +
+    '<button class="nav-btn" id="nav-next">&#8594;</button>';
+  document.body.appendChild(nav);
+
+  document.getElementById('nav-prev').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('nav-next').addEventListener('click', () => goTo(current + 1));
+
+  function updateNav() {
+    document.getElementById('nav-counter').textContent = (current + 1) + ' / ' + total;
+    document.getElementById('nav-prev').disabled = current === 0;
+    document.getElementById('nav-next').disabled = current === total - 1;
+  }
+
+  updateNav();
+
+  // 키보드
+  document.addEventListener('keydown', (e) => {
+    if (document.body.classList.contains('editor-active')) return;
+    switch(e.key) {
+      case 'ArrowLeft': case 'ArrowUp':
+        e.preventDefault(); goTo(current - 1); break;
+      case 'ArrowRight': case 'ArrowDown': case ' ':
+        e.preventDefault(); goTo(current + 1); break;
+      case 'Home': e.preventDefault(); goTo(0); break;
+      case 'End':  e.preventDefault(); goTo(total - 1); break;
+    }
+  });
+})();
+</script>
+
+<script>
+/* ── editor.js ───────────────────────────────── */
+/**
+ * editor.js — 브라우저 인라인 편집기 (순수 JavaScript)
+ * E 키 또는 우측 상단 버튼으로 편집 모드 토글
+ *
+ * 기능:
+ *  - 텍스트 인라인 편집 (contenteditable)
+ *  - Bold / Italic / Underline / 폰트 크기 / 색상
+ *  - 애니메이션 6종 적용
+ *  - Undo / Redo (Ctrl+Z / Ctrl+Y)
+ *  - HTML 내보내기
+ */
+(function () {
+  'use strict';
+
+  // ── 상태 ──────────────────────────────────────────────
+  let isEditorActive = false;
+  const history = [];  // undo 스택
+  const redoStack = []; // redo 스택
+  const MAX_HISTORY = 50;
+
+  // ── DOM 준비 후 초기화 ────────────────────────────────
+  document.addEventListener('DOMContentLoaded', init);
+
+  function init() {
+    buildToggleButton();
+    buildToolbar();
+    buildAnimPanel();
+    buildToast();
+    attachKeyboard();
+    markEditableElements();
+  }
+
+  // ── 편집 모드 토글 버튼 ──────────────────────────────
+  function buildToggleButton() {
+    const btn = document.createElement('button');
+    btn.id = 'editor-toggle';
+    btn.innerHTML = '<span class="toggle-dot"></span> 편집 모드';
+    btn.title = 'E 키로 토글';
+    btn.addEventListener('click', toggleEditor);
+    document.body.appendChild(btn);
+  }
+
+  function toggleEditor() {
+    isEditorActive = !isEditorActive;
+    document.body.classList.toggle('editor-active', isEditorActive);
+
+    const btn = document.getElementById('editor-toggle');
+    btn.innerHTML = isEditorActive
+      ? '<span class="toggle-dot"></span> 편집 중'
+      : '<span class="toggle-dot"></span> 편집 모드';
+
+    if (isEditorActive) {
+      enableEditing();
+    } else {
+      disableEditing();
+    }
+  }
+
+  // ── 편집 가능 요소 마킹 ──────────────────────────────
+  function markEditableElements() {
+    const slide = document.querySelector('.slide');
+    if (!slide) return;
+
+    // 텍스트 노드가 있는 요소에 data-editable 추가
+    const textTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'li', 'span', 'div'];
+    textTags.forEach(tag => {
+      slide.querySelectorAll(tag).forEach(el => {
+        if (el.children.length === 0 || el.textContent.trim()) {
+          el.setAttribute('data-editable', 'true');
+        }
+      });
+    });
+  }
+
+  // ── 편집 활성 ─────────────────────────────────────────
+  function enableEditing() {
+    document.querySelectorAll('[data-editable]').forEach(el => {
+      el.contentEditable = 'true';
+      el.addEventListener('focus', onFocusEditable);
+      el.addEventListener('blur', onBlurEditable);
+      el.addEventListener('input', onInput);
+    });
+    saveSnapshot(); // 현재 상태 스냅샷
+  }
+
+  function disableEditing() {
+    document.querySelectorAll('[data-editable]').forEach(el => {
+      el.contentEditable = 'false';
+      el.removeEventListener('focus', onFocusEditable);
+      el.removeEventListener('blur', onBlurEditable);
+    });
+    clearToolbarState();
+  }
+
+  let currentTarget = null;
+
+  function onFocusEditable(e) {
+    currentTarget = e.target;
+    updateToolbarState();
+  }
+
+  function onBlurEditable() {
+    currentTarget = null;
+    clearToolbarState();
+  }
+
+  function onInput() {
+    // 디바운스 스냅샷
+    clearTimeout(onInput._timer);
+    onInput._timer = setTimeout(saveSnapshot, 500);
+  }
+
+  // ── Undo / Redo ──────────────────────────────────────
+  function saveSnapshot() {
+    const slide = document.querySelector('.slide');
+    if (!slide) return;
+    const snap = slide.innerHTML;
+    if (history.length && history[history.length - 1] === snap) return;
+    history.push(snap);
+    if (history.length > MAX_HISTORY) history.shift();
+    redoStack.length = 0;
+  }
+
+  function undo() {
+    if (history.length <= 1) { showToast('더 이상 실행 취소할 수 없습니다'); return; }
+    const current = history.pop();
+    redoStack.push(current);
+    const prev = history[history.length - 1];
+    restoreSnapshot(prev);
+    showToast('실행 취소');
+  }
+
+  function redo() {
+    if (!redoStack.length) { showToast('다시 실행할 내용이 없습니다'); return; }
+    const next = redoStack.pop();
+    history.push(next);
+    restoreSnapshot(next);
+    showToast('다시 실행');
+  }
+
+  function restoreSnapshot(html) {
+    const slide = document.querySelector('.slide');
+    if (!slide) return;
+    slide.innerHTML = html;
+    if (isEditorActive) {
+      markEditableElements();
+      enableEditing();
+    }
+  }
+
+  // ── 포맷 툴바 (상단 가로) ────────────────────────────
+  function buildToolbar() {
+    const tb = document.createElement('div');
+    tb.id = 'editor-toolbar';
+
+    tb.innerHTML = `
+      <!-- 편집 모드 표시 -->
+      <div class="toolbar-section">
+        <span style="font-size:11px;font-weight:700;color:#2563eb;white-space:nowrap;letter-spacing:-0.01em;">✏️ 편집 중</span>
+      </div>
+
+      <div class="toolbar-divider"></div>
+
+      <!-- 서식 -->
+      <div class="toolbar-section">
+        <span class="toolbar-label">서식</span>
+        <button class="tb-btn" id="tb-bold"   title="굵게 (Ctrl+B)"><b>B</b></button>
+        <button class="tb-btn" id="tb-italic" title="기울임 (Ctrl+I)"><i>I</i></button>
+        <button class="tb-btn" id="tb-under"  title="밑줄 (Ctrl+U)"><u>U</u></button>
+        <button class="tb-btn" id="tb-strike" title="취소선">S̶</button>
+      </div>
+
+      <div class="toolbar-divider"></div>
+
+      <!-- 폰트 크기 -->
+      <div class="toolbar-section">
+        <span class="toolbar-label">크기</span>
+        <button class="tb-btn" id="tb-font-dec" title="크기 줄이기">A−</button>
+        <input class="tb-input" id="tb-font-size" type="number" min="8" max="200" placeholder="px">
+        <button class="tb-btn" id="tb-font-inc" title="크기 키우기">A+</button>
+      </div>
+
+      <div class="toolbar-divider"></div>
+
+      <!-- 색상 -->
+      <div class="toolbar-section">
+        <span class="toolbar-label">색상</span>
+        <span style="font-size:11px;color:#9ca3af;">T</span>
+        <input class="tb-color" id="tb-color-text" type="color" value="#1a1a1a" title="텍스트 색상">
+        <span style="font-size:11px;color:#9ca3af;margin-left:4px;">bg</span>
+        <input class="tb-color" id="tb-color-bg" type="color" value="#ffffff" title="배경 색상">
+      </div>
+
+      <div class="toolbar-divider"></div>
+
+      <!-- 정렬 -->
+      <div class="toolbar-section">
+        <span class="toolbar-label">정렬</span>
+        <button class="tb-btn" id="tb-align-left"   title="왼쪽">⬛︎≡</button>
+        <button class="tb-btn" id="tb-align-center" title="가운데">≡</button>
+        <button class="tb-btn" id="tb-align-right"  title="오른쪽">≡⬛︎</button>
+      </div>
+
+      <div class="toolbar-divider"></div>
+
+      <!-- 애니메이션 -->
+      <div class="toolbar-section">
+        <span class="toolbar-label">애니</span>
+        <button class="tb-btn" id="tb-anim-toggle" title="애니메이션 선택">✨ 애니메이션 ▾</button>
+      </div>
+
+      <div class="toolbar-divider"></div>
+
+      <!-- 시스템 -->
+      <div class="toolbar-section">
+        <span class="toolbar-label">시스템</span>
+        <button class="tb-btn" id="tb-undo"   title="실행 취소 (Ctrl+Z)">↩ 취소</button>
+        <button class="tb-btn" id="tb-redo"   title="다시 실행 (Ctrl+Y)">↪ 다시</button>
+        <button class="tb-btn" id="tb-export" title="HTML 저장">⬇ HTML</button>
+        <button class="tb-btn" id="tb-pdf"    title="PDF 저장 (Ctrl+P)">📄 PDF</button>
+      </div>
+
+      <!-- 닫기 -->
+      <button class="tb-btn" id="tb-close" title="편집 모드 종료 (E)">✕</button>
+    `;
+
+    document.body.appendChild(tb);
+    attachToolbarEvents();
+  }
+
+  function attachToolbarEvents() {
+    // 서식
+    document.getElementById('tb-bold')  ?.addEventListener('click', () => execCmd('bold'));
+    document.getElementById('tb-italic')?.addEventListener('click', () => execCmd('italic'));
+    document.getElementById('tb-under') ?.addEventListener('click', () => execCmd('underline'));
+    document.getElementById('tb-strike')?.addEventListener('click', () => execCmd('strikeThrough'));
+
+    // 폰트 크기
+    document.getElementById('tb-font-dec')?.addEventListener('click', () => changeFontSize(-2));
+    document.getElementById('tb-font-inc')?.addEventListener('click', () => changeFontSize(+2));
+    document.getElementById('tb-font-size')?.addEventListener('change', (e) => {
+      setFontSize(parseInt(e.target.value, 10));
+    });
+
+    // 색상
+    document.getElementById('tb-color-text')?.addEventListener('input', (e) => {
+      execCmd('foreColor', e.target.value);
+    });
+    document.getElementById('tb-color-bg')?.addEventListener('input', (e) => {
+      if (currentTarget) currentTarget.style.backgroundColor = e.target.value;
+    });
+
+    // 정렬
+    document.getElementById('tb-align-left')  ?.addEventListener('click', () => execCmd('justifyLeft'));
+    document.getElementById('tb-align-center')?.addEventListener('click', () => execCmd('justifyCenter'));
+    document.getElementById('tb-align-right') ?.addEventListener('click', () => execCmd('justifyRight'));
+
+    // 시스템
+    document.getElementById('tb-undo')       ?.addEventListener('click', undo);
+    document.getElementById('tb-redo')       ?.addEventListener('click', redo);
+    document.getElementById('tb-export')     ?.addEventListener('click', exportHTML);
+    document.getElementById('tb-pdf')        ?.addEventListener('click', exportPDF);
+    document.getElementById('tb-close')      ?.addEventListener('click', toggleEditor);
+    document.getElementById('tb-anim-toggle')?.addEventListener('click', toggleAnimPanel);
+  }
+
+  function execCmd(cmd, value) {
+    document.execCommand(cmd, false, value || null);
+    saveSnapshot();
+  }
+
+  function changeFontSize(delta) {
+    if (!currentTarget) return;
+    const current = parseInt(window.getComputedStyle(currentTarget).fontSize, 10) || 20;
+    currentTarget.style.fontSize = (current + delta) + 'px';
+    document.getElementById('tb-font-size').value = current + delta;
+    saveSnapshot();
+  }
+
+  function setFontSize(px) {
+    if (!currentTarget || isNaN(px)) return;
+    currentTarget.style.fontSize = px + 'px';
+    saveSnapshot();
+  }
+
+  function updateToolbarState() {
+    if (!currentTarget) return;
+    const styles = window.getComputedStyle(currentTarget);
+    const sizeEl = document.getElementById('tb-font-size');
+    if (sizeEl) sizeEl.value = parseInt(styles.fontSize, 10);
+  }
+
+  function clearToolbarState() {
+    const sizeEl = document.getElementById('tb-font-size');
+    if (sizeEl) sizeEl.value = '';
+  }
+
+  // ── 애니메이션 패널 ──────────────────────────────────
+  const ANIMS = [
+    { key: 'fade-in',    icon: '✨', label: 'Fade In' },
+    { key: 'slide-left', icon: '→', label: 'Slide Left' },
+    { key: 'slide-up',   icon: '↑', label: 'Slide Up' },
+    { key: 'zoom-up',    icon: '⊕', label: 'Zoom Up' },
+    { key: 'bounce',     icon: '⚡', label: 'Bounce' },
+    { key: 'flip',       icon: '🔄', label: 'Flip' },
+    { key: 'blur-in',    icon: '◎', label: 'Blur In' },
+  ];
+
+  function buildAnimPanel() {
+    const panel = document.createElement('div');
+    panel.id = 'anim-panel';
+    panel.innerHTML = '<div class="anim-title">애니메이션 선택</div>';
+
+    ANIMS.forEach(({ key, icon, label }) => {
+      const btn = document.createElement('button');
+      btn.className = 'anim-btn';
+      btn.innerHTML = `<span class="anim-icon">${icon}</span>${label}`;
+      btn.addEventListener('click', () => { applyAnim(key); closeAnimPanel(); });
+      panel.appendChild(btn);
+    });
+
+    // 제거 버튼
+    const removeBtn = document.createElement('button');
+    removeBtn.className = 'anim-btn';
+    removeBtn.innerHTML = `<span class="anim-icon">✕</span>제거`;
+    removeBtn.style.color = '#ef4444';
+    removeBtn.addEventListener('click', () => { removeAnim(); closeAnimPanel(); });
+    panel.appendChild(removeBtn);
+
+    document.body.appendChild(panel);
+
+    // 외부 클릭 시 닫기
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#anim-panel') && !e.target.closest('#tb-anim-toggle')) {
+        closeAnimPanel();
+      }
+    });
+  }
+
+  function toggleAnimPanel() {
+    const panel = document.getElementById('anim-panel');
+    if (!panel) return;
+    const btn = document.getElementById('tb-anim-toggle');
+    if (panel.classList.contains('open')) {
+      closeAnimPanel();
+    } else {
+      // 버튼 위치에 맞춰 드롭다운 위치 지정
+      const rect = btn.getBoundingClientRect();
+      panel.style.left = rect.left + 'px';
+      panel.classList.add('open');
+      btn.classList.add('active');
+    }
+  }
+
+  function closeAnimPanel() {
+    const panel = document.getElementById('anim-panel');
+    const btn = document.getElementById('tb-anim-toggle');
+    panel?.classList.remove('open');
+    btn?.classList.remove('active');
+  }
+
+  function applyAnim(key) {
+    if (!currentTarget) { showToast('텍스트를 먼저 클릭하세요'); return; }
+    currentTarget.setAttribute('data-anim', key);
+    // 애니메이션 재실행을 위해 잠깐 제거 후 재적용
+    currentTarget.style.animation = 'none';
+    requestAnimationFrame(() => {
+      currentTarget.style.animation = '';
+    });
+    showToast(`${key} 적용됨`);
+    saveSnapshot();
+  }
+
+  function removeAnim() {
+    if (!currentTarget) return;
+    currentTarget.removeAttribute('data-anim');
+    currentTarget.style.animation = '';
+    showToast('애니메이션 제거됨');
+    saveSnapshot();
+  }
+
+  // ── HTML 내보내기 ─────────────────────────────────────
+  function exportHTML() {
+    const slide = document.querySelector('.slide');
+    if (!slide) return;
+
+    const html = document.documentElement.outerHTML;
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `slide-exported-${Date.now()}.html`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('HTML 내보내기 완료');
+  }
+
+  // ── PDF 내보내기 ──────────────────────────────────────
+  function exportPDF() {
+    // 편집 모드 잠깐 끄고 인쇄 (UI 요소 숨김)
+    const wasActive = isEditorActive;
+    if (wasActive) {
+      document.body.classList.remove('editor-active');
+    }
+    showToast('인쇄 대화상자에서 PDF로 저장 선택 → 가로 방향 권장');
+    setTimeout(() => {
+      window.print();
+      if (wasActive) {
+        document.body.classList.add('editor-active');
+      }
+    }, 400);
+  }
+
+  // ── 토스트 알림 ──────────────────────────────────────
+  function buildToast() {
+    const toast = document.createElement('div');
+    toast.id = 'editor-toast';
+    document.body.appendChild(toast);
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('editor-toast');
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(showToast._timer);
+    showToast._timer = setTimeout(() => toast.classList.remove('show'), 1800);
+  }
+
+  // ── 키보드 단축키 ─────────────────────────────────────
+  function attachKeyboard() {
+    document.addEventListener('keydown', (e) => {
+      // E 키 — 편집 모드 토글 (텍스트 편집 중이 아닐 때만)
+      if (e.key === 'e' || e.key === 'E') {
+        if (!e.ctrlKey && !e.metaKey && document.activeElement.tagName !== 'INPUT') {
+          if (!isEditorActive || document.activeElement.contentEditable !== 'true') {
+            e.preventDefault();
+            toggleEditor();
+            return;
+          }
+        }
+      }
+
+      if (!isEditorActive) return;
+
+      // Ctrl+Z — 실행 취소
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
+        e.preventDefault();
+        undo();
+      }
+
+      // Ctrl+Y / Ctrl+Shift+Z — 다시 실행
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
+        e.preventDefault();
+        redo();
+      }
+
+      // Ctrl+P — PDF 내보내기
+      if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+        e.preventDefault();
+        exportPDF();
+      }
+    });
+  }
+})();
+
+</script>
+
+</body>
+</html>

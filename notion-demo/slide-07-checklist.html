@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Notion Demo — Checklist</title>
+  <link rel="stylesheet" href="../core/theme.css">
+  <link rel="stylesheet" href="theme-notion.css">
+  <link rel="stylesheet" href="../core/slide-base.css">
+  <link rel="stylesheet" href="../core/editor.css">
+  <style>
+    .slide {
+      background: var(--color-bg);
+      padding: 64px 96px;
+    }
+
+    .page-title {
+      font-family: var(--font-serif);
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--color-text);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .two-col {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .col-label {
+      font-family: var(--font-sans);
+      font-size: var(--font-size-xs);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-text-light);
+      margin-bottom: var(--space-sm);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    /* 체크박스 아이템 */
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .check-item:last-child { border-bottom: none; }
+
+    .checkbox {
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+
+    .checkbox.checked {
+      background: #448361;
+      color: white;
+    }
+
+    .checkbox.unchecked {
+      border: 1.5px solid var(--color-border-dark);
+    }
+
+    .check-body {
+      flex: 1;
+    }
+
+    .check-text {
+      font-family: var(--font-sans);
+      font-size: var(--font-size-small);
+      color: var(--color-text);
+      line-height: 1.5;
+    }
+
+    .check-item.done .check-text {
+      color: var(--color-text-muted);
+      text-decoration: line-through;
+      text-decoration-color: var(--color-border-dark);
+    }
+
+    .check-meta {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-light);
+      margin-top: 2px;
+    }
+
+    /* 진행 바 */
+    .progress-section {
+      margin-top: var(--space-lg);
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-sans);
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      margin-bottom: 8px;
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: var(--color-border);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #448361;
+      border-radius: var(--radius-full);
+      transition: width 0.6s ease;
+    }
+  </style>
+</head>
+<body class="slide-body">
+  <div class="slide">
+
+    <div class="page-title" data-anim="fade-in" data-delay="1">
+      <span>✅</span>
+      <span>2026 Q2 체크리스트</span>
+    </div>
+
+    <div class="two-col">
+
+      <!-- 완료된 것들 -->
+      <div data-anim="fade-in" data-delay="2">
+        <div class="col-label">완료 · 3/5</div>
+
+        <div class="check-item done">
+          <div class="checkbox checked">✓</div>
+          <div class="check-body">
+            <div class="check-text">디자인 시스템 토큰 정립</div>
+            <div class="check-meta">Mar 15 · Design</div>
+          </div>
+        </div>
+        <div class="check-item done">
+          <div class="checkbox checked">✓</div>
+          <div class="check-body">
+            <div class="check-text">데이터 파이프라인 아키텍처 설계</div>
+            <div class="check-meta">Mar 28 · Engineering</div>
+          </div>
+        </div>
+        <div class="check-item done">
+          <div class="checkbox checked">✓</div>
+          <div class="check-body">
+            <div class="check-text">p95 응답 속도 800ms 이하 달성</div>
+            <div class="check-meta">Apr 10 · Engineering</div>
+          </div>
+        </div>
+        <div class="check-item">
+          <div class="checkbox unchecked"></div>
+          <div class="check-body">
+            <div class="check-text">온보딩 플로우 A/B 테스트 완료</div>
+            <div class="check-meta">Due Apr 30 · Product</div>
+          </div>
+        </div>
+        <div class="check-item">
+          <div class="checkbox unchecked"></div>
+          <div class="check-body">
+            <div class="check-text">분석 대시보드 v1 사용자 배포</div>
+            <div class="check-meta">Due May 15 · Product</div>
+          </div>
+        </div>
+
+        <div class="progress-section">
+          <div class="progress-header">
+            <span>전체 진행률</span>
+            <span>60%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width:60%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 다음 단계 -->
+      <div data-anim="fade-in" data-delay="3">
+        <div class="col-label">다음 스프린트 · 예정</div>
+
+        <div class="check-item">
+          <div class="checkbox unchecked"></div>
+          <div class="check-body">
+            <div class="check-text">팀 협업 기능 — 와이어프레임 확정</div>
+            <div class="check-meta">Due May 20 · Design</div>
+          </div>
+        </div>
+        <div class="check-item">
+          <div class="checkbox unchecked"></div>
+          <div class="check-body">
+            <div class="check-text">엔터프라이즈 플랜 가격 정책 확정</div>
+            <div class="check-meta">Due May 31 · Strategy</div>
+          </div>
+        </div>
+        <div class="check-item">
+          <div class="checkbox unchecked"></div>
+          <div class="check-body">
+            <div class="check-text">베타 고객 10사 NPS 조사</div>
+            <div class="check-meta">Due Jun 15 · Growth</div>
+          </div>
+        </div>
+        <div class="check-item">
+          <div class="checkbox unchecked"></div>
+          <div class="check-body">
+            <div class="check-text">Q3 OKR 초안 작성 및 리뷰</div>
+            <div class="check-meta">Due Jun 30 · Leadership</div>
+          </div>
+        </div>
+        <div class="check-item">
+          <div class="checkbox unchecked"></div>
+          <div class="check-body">
+            <div class="check-text">다국어 지원 기술 스펙 검토</div>
+            <div class="check-meta">Due Jun 30 · Engineering</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="../core/nav.js"></script>
+  <script src="../core/editor.js"></script>
+</body>
+</html>

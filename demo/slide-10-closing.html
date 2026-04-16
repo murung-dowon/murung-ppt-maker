@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo — Closing</title>
+  <link rel="stylesheet" href="../core/theme.css">
+  <link rel="stylesheet" href="../core/slide-base.css">
+  <link rel="stylesheet" href="../core/editor.css">
+  <style>
+    .closing-kicker {
+      font-size: var(--font-size-small);
+      font-weight: var(--font-weight-medium);
+      letter-spacing: var(--letter-spacing-wide);
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: var(--space-md);
+    }
+
+    .closing-divider {
+      width: 56px;
+      height: 3px;
+      background: var(--color-accent);
+      border-radius: var(--radius-full);
+      margin: var(--space-lg) auto;
+    }
+
+    .contact-grid {
+      display: flex;
+      gap: var(--space-xl);
+      margin-top: var(--space-md);
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .contact-label {
+      font-size: var(--font-size-xs);
+      color: rgba(255,255,255,0.35);
+      letter-spacing: var(--letter-spacing-wide);
+      text-transform: uppercase;
+    }
+
+    .contact-value {
+      font-size: var(--font-size-small);
+      color: rgba(255,255,255,0.7);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .contact-sep {
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      align-self: center;
+    }
+
+    /* 장식 원 */
+    .slide.layout-closing::before {
+      content: '';
+      position: absolute;
+      right: -100px;
+      bottom: -100px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.05);
+    }
+
+    .slide.layout-closing::after {
+      content: '';
+      position: absolute;
+      right: -180px;
+      bottom: -180px;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.03);
+    }
+  </style>
+</head>
+<body class="slide-body">
+  <div class="slide layout-closing">
+
+    <p class="closing-kicker" data-anim="fade-in" data-delay="1">Product Strategy 2026</p>
+
+    <h1 class="closing-title" data-anim="slide-up" data-delay="2">
+      함께 만들어갑시다.
+    </h1>
+    <p class="closing-subtitle" data-anim="fade-in" data-delay="3">
+      질문·피드백·협업 제안은 언제든 환영합니다.
+    </p>
+
+    <div class="closing-divider" data-anim="fade-in" data-delay="3"></div>
+
+    <div class="contact-grid" data-anim="fade-in" data-delay="4">
+      <div class="contact-item">
+        <span class="contact-label">Team</span>
+        <span class="contact-value">Strategy & Growth</span>
+      </div>
+      <div class="contact-sep"></div>
+      <div class="contact-item">
+        <span class="contact-label">Email</span>
+        <span class="contact-value">strategy@company.com</span>
+      </div>
+      <div class="contact-sep"></div>
+      <div class="contact-item">
+        <span class="contact-label">Notion</span>
+        <span class="contact-value">notion.so/strategy-2026</span>
+      </div>
+    </div>
+
+  </div>
+  <script src="../core/nav.js"></script>
+  <script src="../core/editor.js"></script>
+</body>
+</html>

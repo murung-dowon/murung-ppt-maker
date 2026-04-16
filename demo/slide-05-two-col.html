@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo — Two Column</title>
+  <link rel="stylesheet" href="../core/theme.css">
+  <link rel="stylesheet" href="../core/slide-base.css">
+  <link rel="stylesheet" href="../core/editor.css">
+  <style>
+    .right-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .insight-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-sm) var(--space-md);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+
+    .insight-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-md);
+      background: var(--color-accent-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .insight-text .label {
+      font-size: var(--font-size-small);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text);
+    }
+
+    .insight-text .desc {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      margin-top: 2px;
+      line-height: 1.5;
+    }
+
+    .body-text {
+      font-size: var(--font-size-body);
+      color: var(--color-text);
+      line-height: var(--line-height-normal);
+    }
+
+    .body-text + .body-text {
+      margin-top: var(--space-md);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: var(--space-md);
+    }
+  </style>
+</head>
+<body class="slide-body">
+  <div class="slide layout-two-col">
+
+    <div class="slide-header" data-anim="fade-in">
+      <span class="slide-logo">Demo Deck</span>
+      <span class="slide-tag">Strategy</span>
+    </div>
+
+    <h1 class="slide-title" data-anim="slide-up" data-delay="1">우리가 집중해야 할 것</h1>
+    <div class="slide-title-bar" data-anim="fade-in" data-delay="1"></div>
+
+    <div class="two-col ratio-6-4">
+
+      <!-- 왼쪽: 텍스트 -->
+      <div data-anim="fade-in" data-delay="2">
+        <p class="col-title">배경</p>
+        <p class="body-text">
+          지난 2년간의 데이터를 분석한 결과, 사용자 성장의 병목은 기능이 아니라
+          <span class="highlight">경험의 일관성</span>에 있다는 결론에 도달했습니다.
+        </p>
+        <p class="body-text">
+          가장 빠르게 성장한 코호트는 첫 주 안에 핵심 기능을 3개 이상 활성화한 그룹으로,
+          이들의 90일 리텐션은 평균 <span class="highlight">2.4배 높았습니다</span>.
+        </p>
+
+        <div class="tag-row">
+          <span class="chip accent">온보딩 최적화</span>
+          <span class="chip accent">코어 루프 강화</span>
+          <span class="chip accent">데이터 피드백</span>
+        </div>
+      </div>
+
+      <!-- 오른쪽: 인사이트 카드 스택 -->
+      <div class="right-stack" data-anim="slide-up" data-delay="3">
+        <div class="insight-card">
+          <div class="insight-icon">🎯</div>
+          <div class="insight-text">
+            <div class="label">Focus Area #1</div>
+            <div class="desc">첫 7일 온보딩 플로우 재설계 — 핵심 액션 3개로 단순화</div>
+          </div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon">📊</div>
+          <div class="insight-text">
+            <div class="label">Focus Area #2</div>
+            <div class="desc">제품 내 분석 대시보드 제공 — 사용자 셀프 인사이트 유도</div>
+          </div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon">🔗</div>
+          <div class="insight-text">
+            <div class="label">Focus Area #3</div>
+            <div class="desc">팀 협업 기능 강화 — 개인→팀 전환 시 이탈 방지</div>
+          </div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon">⚡</div>
+          <div class="insight-text">
+            <div class="label">Focus Area #4</div>
+            <div class="desc">성능 개선 — p95 응답 속도 800ms 이하 목표</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="../core/nav.js"></script>
+  <script src="../core/editor.js"></script>
+</body>
+</html>

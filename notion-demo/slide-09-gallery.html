@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Notion Demo — Gallery</title>
+  <link rel="stylesheet" href="../core/theme.css">
+  <link rel="stylesheet" href="theme-notion.css">
+  <link rel="stylesheet" href="../core/slide-base.css">
+  <link rel="stylesheet" href="../core/editor.css">
+  <style>
+    .slide {
+      background: var(--color-bg);
+      padding: 64px 96px;
+    }
+
+    .page-title {
+      font-family: var(--font-serif);
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--color-text);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* 노션 갤러리 뷰 */
+    .gallery {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-sm);
+      align-items: stretch;
+    }
+
+    .gallery-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: default;
+      transition: box-shadow var(--transition-fast);
+    }
+
+    .gallery-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-cover {
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+
+    .card-cover.c1 { background: var(--callout-blue); }
+    .card-cover.c2 { background: var(--callout-green); }
+    .card-cover.c3 { background: var(--callout-yellow); }
+    .card-cover.c4 { background: var(--callout-orange); }
+
+    .card-body {
+      padding: 12px 14px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .card-title {
+      font-family: var(--font-sans);
+      font-size: var(--font-size-small);
+      font-weight: 600;
+      color: var(--color-text);
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-family: var(--font-sans);
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    .card-props {
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px solid var(--color-border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .prop-tag {
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: var(--radius-full);
+      font-weight: 500;
+    }
+
+    .prop-tag.blue   { background: var(--callout-blue);   color: #2383e2; }
+    .prop-tag.green  { background: var(--callout-green);  color: #448361; }
+    .prop-tag.yellow { background: var(--callout-yellow); color: #a87845; }
+    .prop-tag.gray   { background: var(--color-surface-2); color: var(--color-text-muted); }
+  </style>
+</head>
+<body class="slide-body">
+  <div class="slide">
+
+    <div class="page-title" data-anim="fade-in" data-delay="1">
+      <span>🗃</span>
+      <span>전략 이니셔티브</span>
+    </div>
+
+    <div class="gallery">
+
+      <div class="gallery-card" data-anim="slide-up" data-delay="2">
+        <div class="card-cover c1">🎯</div>
+        <div class="card-body">
+          <div class="card-title">온보딩 재설계</div>
+          <div class="card-desc">첫 7일 경험 최적화. 핵심 액션 4단계로 압축하여 활성화율 향상.</div>
+          <div class="card-props">
+            <span class="prop-tag yellow">진행 중</span>
+            <span class="prop-tag gray">Product</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-anim="slide-up" data-delay="3">
+        <div class="card-cover c2">📊</div>
+        <div class="card-body">
+          <div class="card-title">분석 대시보드</div>
+          <div class="card-desc">사용자 셀프서비스 인사이트. CS 문의 30% 감소 목표.</div>
+          <div class="card-props">
+            <span class="prop-tag yellow">진행 중</span>
+            <span class="prop-tag gray">Engineering</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-anim="slide-up" data-delay="4">
+        <div class="card-cover c3">🌍</div>
+        <div class="card-body">
+          <div class="card-title">글로벌 확장</div>
+          <div class="card-desc">EN/JP 다국어 지원. 일본 SMB 시장 우선 진입 전략.</div>
+          <div class="card-props">
+            <span class="prop-tag gray">예정</span>
+            <span class="prop-tag gray">Growth</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-anim="slide-up" data-delay="5">
+        <div class="card-cover c4">🏢</div>
+        <div class="card-body">
+          <div class="card-title">엔터프라이즈 티어</div>
+          <div class="card-desc">SSO, 감사 로그, 어드민 권한. ACV $48K 목표.</div>
+          <div class="card-props">
+            <span class="prop-tag gray">예정</span>
+            <span class="prop-tag gray">Sales</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="../core/nav.js"></script>
+  <script src="../core/editor.js"></script>
+</body>
+</html>

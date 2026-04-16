@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo — Title</title>
+  <link rel="stylesheet" href="../core/theme.css">
+  <link rel="stylesheet" href="../core/slide-base.css">
+  <link rel="stylesheet" href="../core/editor.css">
+  <style>
+    /* 상단 진한 accent 바 */
+    .slide.layout-title::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: var(--color-accent);
+    }
+
+    /* 우상단 도형 장식 */
+    .deco-circle-sm {
+      position: absolute;
+      top: 60px;
+      right: 100px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 2px solid var(--color-accent-light);
+    }
+
+    .deco-dot-grid {
+      position: absolute;
+      bottom: 100px;
+      left: 80px;
+      display: grid;
+      grid-template-columns: repeat(5, 10px);
+      grid-template-rows: repeat(4, 10px);
+      gap: 8px;
+    }
+
+    .deco-dot-grid span {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--color-border-dark);
+      display: block;
+    }
+
+    .meta-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .meta-divider {
+      width: 1px;
+      height: 16px;
+      background: var(--color-border-dark);
+    }
+  </style>
+</head>
+<body class="slide-body">
+  <div class="slide layout-title">
+
+    <!-- 장식 요소 -->
+    <div class="deco-circle-sm"></div>
+    <div class="deco-dot-grid">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <p class="slide-eyebrow" data-anim="fade-in" data-delay="1">PRODUCT STRATEGY · 2026</p>
+
+    <h1 class="slide-title" data-anim="slide-up" data-delay="2">
+      Building for the<br>
+      <span class="highlight">Next Decade</span>
+    </h1>
+
+    <p class="slide-subtitle" data-anim="fade-in" data-delay="3">
+      A framework for sustainable growth through design,<br>
+      data, and cross-functional collaboration.
+    </p>
+
+    <div class="meta-row" data-anim="fade-in" data-delay="4">
+      <div class="slide-meta">April 2026</div>
+      <div class="meta-divider"></div>
+      <div class="slide-meta">Strategy Team</div>
+      <div class="meta-divider"></div>
+      <span class="chip accent">CONFIDENTIAL</span>
+    </div>
+
+  </div>
+  <script src="../core/nav.js"></script>
+  <script src="../core/editor.js"></script>
+</body>
+</html>

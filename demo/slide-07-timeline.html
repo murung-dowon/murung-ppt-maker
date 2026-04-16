@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo — Timeline</title>
+  <link rel="stylesheet" href="../core/theme.css">
+  <link rel="stylesheet" href="../core/slide-base.css">
+  <link rel="stylesheet" href="../core/editor.css">
+  <style>
+    .timeline-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* 중앙 수평 연결선 */
+    .timeline-line {
+      position: absolute;
+      top: calc(36px);          /* dot 중심 맞춤 */
+      left: calc(12.5% + 18px); /* 첫 dot 중심 */
+      right: calc(12.5% + 18px);/* 마지막 dot 중심 */
+      height: 2px;
+      background: var(--color-border);
+      z-index: 0;
+    }
+
+    .timeline-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+      position: relative;
+      z-index: 1;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .step-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-size-small);
+      font-weight: var(--font-weight-bold);
+      color: white;
+      margin-bottom: var(--space-md);
+      position: relative;
+      z-index: 2;
+      flex-shrink: 0;
+    }
+
+    .step.done     .step-dot { background: var(--color-accent); }
+    .step.active   .step-dot { background: #f59e0b; box-shadow: 0 0 0 6px #fef3c7; }
+    .step.upcoming .step-dot { background: var(--color-border-dark); }
+
+    .step-quarter {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: var(--letter-spacing-wide);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .step.done     .step-quarter { color: var(--color-accent); }
+    .step.active   .step-quarter { color: #d97706; }
+    .step.upcoming .step-quarter { color: var(--color-text-muted); }
+
+    .step-title {
+      font-size: var(--font-size-h4);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--space-xs);
+      line-height: 1.3;
+    }
+
+    .step.upcoming .step-title { color: var(--color-text-muted); }
+
+    .step-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .step-items li {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    .step.done .step-items li::before {
+      content: '✓ ';
+      color: var(--color-accent);
+      font-weight: 700;
+    }
+
+    .step.active .step-items li::before {
+      content: '→ ';
+      color: #d97706;
+      font-weight: 700;
+    }
+
+    .status-badge {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-xs);
+    }
+
+    .badge-done     { background: #dbeafe; color: var(--color-accent); }
+    .badge-active   { background: #fef3c7; color: #92400e; }
+    .badge-upcoming { background: var(--color-surface-2); color: var(--color-text-muted); }
+  </style>
+</head>
+<body class="slide-body">
+  <div class="slide layout-content">
+
+    <div class="slide-header" data-anim="fade-in">
+      <span class="slide-logo">Demo Deck</span>
+      <span class="slide-tag">Roadmap</span>
+    </div>
+
+    <h1 class="slide-title" data-anim="slide-up" data-delay="1">2026 실행 로드맵</h1>
+    <div class="slide-title-bar" data-anim="fade-in" data-delay="1"></div>
+
+    <div class="timeline-wrapper" data-anim="fade-in" data-delay="2">
+      <div class="timeline-line"></div>
+      <div class="timeline-steps">
+
+        <div class="step done" data-anim="slide-up" data-delay="2">
+          <div class="step-dot">✓</div>
+          <span class="status-badge badge-done">완료</span>
+          <div class="step-quarter">Q1 · Jan–Mar</div>
+          <div class="step-title">기반 구축</div>
+          <ul class="step-items">
+            <li>디자인 시스템 정립</li>
+            <li>데이터 파이프라인 설계</li>
+            <li>팀 온보딩 완료</li>
+          </ul>
+        </div>
+
+        <div class="step active" data-anim="slide-up" data-delay="3">
+          <div class="step-dot">→</div>
+          <span class="status-badge badge-active">진행 중</span>
+          <div class="step-quarter">Q2 · Apr–Jun</div>
+          <div class="step-title">핵심 기능 출시</div>
+          <ul class="step-items">
+            <li>온보딩 플로우 개선</li>
+            <li>대시보드 v1 배포</li>
+            <li>베타 고객 피드백</li>
+          </ul>
+        </div>
+
+        <div class="step upcoming" data-anim="slide-up" data-delay="4">
+          <div class="step-dot">3</div>
+          <span class="status-badge badge-upcoming">예정</span>
+          <div class="step-quarter">Q3 · Jul–Sep</div>
+          <div class="step-title">성장 가속</div>
+          <ul class="step-items">
+            <li>협업 기능 출시</li>
+            <li>엔터프라이즈 영업 시작</li>
+            <li>퍼포먼스 최적화</li>
+          </ul>
+        </div>
+
+        <div class="step upcoming" data-anim="slide-up" data-delay="5">
+          <div class="step-dot">4</div>
+          <span class="status-badge badge-upcoming">예정</span>
+          <div class="step-quarter">Q4 · Oct–Dec</div>
+          <div class="step-title">글로벌 확장</div>
+          <ul class="step-items">
+            <li>다국어 지원 출시</li>
+            <li>파트너십 체결</li>
+            <li>연간 목표 리뷰</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <script src="../core/nav.js"></script>
+  <script src="../core/editor.js"></script>
+</body>
+</html>

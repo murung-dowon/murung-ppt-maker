@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo — Quote</title>
+  <link rel="stylesheet" href="../core/theme.css">
+  <link rel="stylesheet" href="../core/slide-base.css">
+  <link rel="stylesheet" href="../core/editor.css">
+  <style>
+    .accent-line {
+      width: 56px;
+      height: 4px;
+      background: var(--color-accent);
+      border-radius: var(--radius-full);
+      margin: var(--space-lg) auto;
+    }
+
+    .slide.layout-quote::before {
+      content: '';
+      position: absolute;
+      left: -60px;
+      bottom: -60px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: var(--color-accent-bg);
+    }
+  </style>
+</head>
+<body class="slide-body">
+  <div class="slide layout-quote">
+
+    <div class="quote-mark" data-anim="fade-in" data-delay="1">"</div>
+
+    <p class="quote-text" data-anim="slide-up" data-delay="2">
+      사람들은 디자인이 어떻게 생겼는지에 관한 것이라 생각합니다.<br>
+      하지만 더 깊이 들어가면, 디자인은 <span class="highlight">작동 방식</span>에 관한 것입니다.
+    </p>
+
+    <div class="accent-line" data-anim="fade-in" data-delay="3"></div>
+
+    <p class="quote-author" data-anim="fade-in" data-delay="3">Steve Jobs</p>
+    <p class="quote-source" data-anim="fade-in" data-delay="4">New York Times, 2003</p>
+
+  </div>
+  <script src="../core/nav.js"></script>
+  <script src="../core/editor.js"></script>
+</body>
+</html>

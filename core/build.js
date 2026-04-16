@@ -55,6 +55,25 @@ const editorCSS  = readCore('editor.css');
 const navJS      = readCore('nav.js');
 const editorJS   = readCore('editor.js');
 
+// ── 슬라이드 <head> 안의 <style> 블록 추출 ────────────
+function extractSlideStyle(html) {
+  const match = html.match(/<style[^>]*>([\s\S]*?)<\/style>/i);
+  return match ? match[1] : '';
+}
+
+// ── 프로젝트 레벨 CSS 파일 인라인 ────────────────────
+function readProjectCSS() {
+  try {
+    const files = fs.readdirSync(PROJECT_DIR);
+    return files
+      .filter(f => f.endsWith('.css'))
+      .map(f => `/* ${f} */\n` + fs.readFileSync(path.join(PROJECT_DIR, f), 'utf-8'))
+      .join('\n');
+  } catch (e) { return ''; }
+}
+
+const projectCSS = readProjectCSS();
+
 // ── 각 슬라이드 HTML에서 .slide 추출 ─────────────────
 function extractSlideDiv(html) {
   // <div class="slide ..."> ... </div> 추출
@@ -119,6 +138,7 @@ slides.forEach((slide, idx) => {
 
   const html = fs.readFileSync(filePath, 'utf-8');
   const div = extractSlideDiv(html);
+  const style = extractSlideStyle(html);
 
   if (!div) {
     console.warn(`⚠️  .slide div를 찾을 수 없습니다: ${slide.file}`);
@@ -130,6 +150,7 @@ slides.forEach((slide, idx) => {
     file: slide.file,
     title: slide.title || `Slide ${idx + 1}`,
     div,
+    style,
   });
   console.log(`  ✅ [${idx + 1}/${slides.length}] ${slide.file}`);
 });
@@ -150,6 +171,12 @@ ${baseCSS}
 
 /* ── editor.css ───────────────────────────────── */
 ${editorCSS}
+
+/* ── project CSS (theme-*.css 등) ──────────────── */
+${projectCSS}
+
+/* ── per-slide styles ──────────────────────────── */
+${slideBlocks.map((s, i) => s.style ? `/* slide ${i+1}: ${s.file} */\n${s.style}` : '').join('\n')}
 
 /* ── 빌드된 발표용 추가 스타일 ─────────────────── */
 body {

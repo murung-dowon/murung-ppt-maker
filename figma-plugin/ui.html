@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Inter, system-ui, sans-serif;
+    background: #1a1a1a; color: #f0ede8;
+    padding: 20px; font-size: 12px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .header { display: flex; flex-direction: column; gap: 4px; }
+  h2 { font-size: 13px; font-weight: 700; }
+  .sub { font-size: 11px; color: rgba(255,255,255,0.4); line-height: 1.5; }
+  .meta {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; padding: 12px 14px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .meta-project { font-size: 13px; font-weight: 700; color: #f0ede8; }
+  .meta-count   { font-size: 11px; color: rgba(255,255,255,0.4); }
+  button {
+    width: 100%; padding: 11px; border: none; border-radius: 8px;
+    font-size: 13px; font-weight: 700; cursor: pointer;
+    letter-spacing: 0.01em; transition: background 0.15s;
+  }
+  .btn-primary { background: #63b3ed; color: #0d0c0a; }
+  .btn-primary:hover { background: #90cdf4; }
+  .btn-primary:disabled {
+    background: #2d3748 !important;
+    color: rgba(255,255,255,0.25) !important;
+    cursor: default;
+  }
+  #status {
+    font-size: 11px; color: rgba(255,255,255,0.4);
+    text-align: center; min-height: 16px; line-height: 1.5;
+  }
+  #status.ok  { color: #68d391; }
+  #status.err { color: #fc8181; }
+  .no-data {
+    font-size: 11px; color: rgba(255,255,255,0.35);
+    line-height: 1.6; text-align: center; padding: 4px 0;
+  }
+  .no-data code {
+    display: block; margin-top: 6px;
+    color: rgba(99,179,237,0.7); font-family: monospace; font-size: 10px;
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h2>ppt-maker → Figma</h2>
+    <p class="sub" id="desc">데이터 확인 중…</p>
+  </div>
+
+  <div class="meta" id="meta" style="display:none">
+    <div class="meta-project" id="proj-name"></div>
+    <div class="meta-count"  id="proj-count"></div>
+  </div>
+
+  <div class="no-data" id="no-data" style="display:none">
+    슬라이드 데이터가 없습니다.<br>
+    Claude Code에 아래와 같이 요청하세요:
+    <code>"[프로젝트명] 피그마로 변환해줘"</code>
+  </div>
+
+  <button class="btn-primary" id="btn" onclick="generate()" disabled>
+    Generate Slides
+  </button>
+
+  <div id="status"></div>
+
+  <script>
+    function setStatus(msg, cls) {
+      const el = document.getElementById('status');
+      el.textContent = msg;
+      el.className = cls || '';
+    }
+
+    window.onmessage = (e) => {
+      const msg = e.data.pluginMessage;
+      if (!msg) return;
+
+      if (msg.type === 'ready') {
+        document.getElementById('desc').textContent = '준비됐습니다. 버튼을 눌러 슬라이드를 생성하세요.';
+        document.getElementById('meta').style.display = 'flex';
+        document.getElementById('proj-name').textContent = msg.project;
+        document.getElementById('proj-count').textContent = `슬라이드 ${msg.count}개`;
+        document.getElementById('btn').textContent = `Generate — ${msg.count} slides`;
+        document.getElementById('btn').disabled = false;
+        return;
+      }
+
+      if (msg.type === 'no-data') {
+        document.getElementById('desc').textContent = '변환할 프로젝트가 없습니다.';
+        document.getElementById('no-data').style.display = 'block';
+        return;
+      }
+
+      if (msg.progress) { setStatus(`생성 중… ${msg.progress}`); return; }
+      if (msg.done)  { setStatus(msg.text, 'ok');  document.getElementById('btn').disabled = false; return; }
+      if (msg.error) { setStatus(msg.text, 'err'); document.getElementById('btn').disabled = false; return; }
+    };
+
+    function generate() {
+      document.getElementById('btn').disabled = true;
+      setStatus('');
+      parent.postMessage({ pluginMessage: { type: 'generate' } }, '*');
+    }
+  </script>
+</body>
+</html>

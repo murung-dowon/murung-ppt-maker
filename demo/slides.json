@@ -1,0 +1,12 @@
+[
+  { "file": "slide-01-title.html",    "title": "Title" },
+  { "file": "slide-02-section.html",  "title": "Section 01" },
+  { "file": "slide-03-content.html",  "title": "Content List" },
+  { "file": "slide-04-stats.html",    "title": "KPI Stats" },
+  { "file": "slide-05-two-col.html",  "title": "Two Column" },
+  { "file": "slide-06-quote.html",    "title": "Quote" },
+  { "file": "slide-07-timeline.html", "title": "Timeline" },
+  { "file": "slide-08-compare.html",  "title": "Comparison" },
+  { "file": "slide-09-section2.html", "title": "Section 02" },
+  { "file": "slide-10-closing.html",  "title": "Closing" }
+]

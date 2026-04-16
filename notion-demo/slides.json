@@ -1,0 +1,12 @@
+[
+  { "file": "slide-01-title.html",    "title": "Title" },
+  { "file": "slide-02-divider.html",  "title": "Chapter Divider" },
+  { "file": "slide-03-blocks.html",   "title": "Content Blocks" },
+  { "file": "slide-04-callouts.html", "title": "Callout Cards" },
+  { "file": "slide-05-table.html",    "title": "Table" },
+  { "file": "slide-06-insight.html",  "title": "Big Insight" },
+  { "file": "slide-07-checklist.html","title": "Checklist" },
+  { "file": "slide-08-columns.html",  "title": "Two Columns" },
+  { "file": "slide-09-gallery.html",  "title": "Gallery" },
+  { "file": "slide-10-closing.html",  "title": "Closing" }
+]
