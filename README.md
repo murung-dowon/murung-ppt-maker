@@ -16,12 +16,14 @@ PDF나 문서를 업로드하면 Claude Code가 내용을 파악해 슬라이드
 
 ### 2-1. 준비 (최초 1회)
 
+먼저 Claude Code를 실행합니다
+
 ```bash
 https://github.com/murung-dowon/murung-ppt-maker
 이거 클론받아서 쓸 수 있게 해줘
 ```
 
-Claude Code를 실행해서 위와 같이 요청하고 해당 폴더에서 작업을 진행합니다.
+위와 같이 요청하고 해당 폴더에서 작업을 진행합니다.
 
 ---
 
