@@ -58,14 +58,10 @@ function scanProjects() {
     );
 
     const meta = metaMap[entry.name] || {};
-    const defaultName = entry.name
-      .split('-')
-      .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-      .join(' ');
 
     projects.push({
       id:              entry.name,
-      name:            meta.name        || defaultName,
+      name:            entry.name,
       description:     meta.description || '',
       hasPresentation,
       slideCount:      slides.length,
