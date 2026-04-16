@@ -36,6 +36,12 @@
     "hasPresentation": true
   },
   {
+    "id": "week7-git",
+    "name": "7주차 실습과제",
+    "description": "오픈소스 SW — Git 명령어 & 협업 충돌 해결",
+    "hasPresentation": true
+  },
+  {
     "id": "engelbart-abc-work",
     "name": "엥겔바트 ABC 작업",
     "description": "더글러스 엥겔바트의 작업 구분 3단계 — A/B/C 프레임워크 내부 피칭",

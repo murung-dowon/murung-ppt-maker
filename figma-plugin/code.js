@@ -4,7 +4,7 @@
 
 // ─── SLIDE_DATA (Claude Code가 자동 업데이트하는 영역) ──────────────────────
 // [SLIDE_DATA_START]
-const SLIDE_DATA = {"project":"engelbart-abc-work","slides":[{"index":0,"file":"slide-01-title.html","layout":"layout-title","theme":"","elements":{"eyebrow":"Douglas Engelbart Framework","title":"더글러스 엥겔바트의 작업 구분 3단계","subtitle":"A 작업 · B 작업 · C 작업 — 우리는 어디에 서 있는가"}},{"index":1,"file":"slide-02-overview.html","layout":"layout-content","theme":"","elements":{"eyebrow":"Douglas Engelbart","title":"작업은 3개 층위로 나뉜다","steps":[{"num":"A","title":"본업 수행","body":"각자 맡은 일을 알아서 잘 하는 것. 기획·개발·마케팅·영업·운영 등 실무 그 자체.","hasImage":true},{"num":"B","title":"방식 개선","body":"A 작업을 더 잘할 수 있도록 방식을 설계하는 일. 자동화·템플릿·협업 도구 도입.","hasImage":true},{"num":"C","title":"체계 구축","body":"B 작업을 지속적으로 할 수 있는 구조를 만드는 일. 조직이 스스로 발전하는 체계.","hasImage":true}],"callout":"대부분의 조직은 A에만 집중한다. B·C가 없으면 성장의 천장이 생긴다."}},{"index":2,"file":"slide-03-a-work.html","layout":"layout-content","theme":"","elements":{"eyebrow":"A 작업","title":"개인이 원래 해야 하는 일","cards":[{"eyebrow":"사업 기획 / 제품개발 / 경영","body":"회사가 나아갈 방향과 제품을 만드는 핵심 업무"},{"eyebrow":"물류 운영","body":"입출고, 재고 관리, 배송 등 물리적 운영"},{"eyebrow":"마케팅 기획 / 운영 / 성과관리","body":"브랜드 성장과 채널 운영, 수치 기반 성과 추적"},{"eyebrow":"경영지원 / 행정","body":"결재, 계약, 재무, 인사 등 내부 운영 지원"},{"eyebrow":"제품 판매 / 영업","body":"채널 입점, 거래처 관리, 매출 확대"},{"eyebrow":"사무실 이전 / 짐 나르기","body":"팀 전체가 움직여야 하는 일도 A 작업이다"}]}},{"index":3,"file":"slide-04-diagnosis.html","layout":"layout-content","theme":"","elements":{"eyebrow":"현재 진단","title":"우리는 A 작업을 잘 하고 있을까?","stat":"?","statLabel":"10점 만점에 몇 점?","callout":"중요한 건 잘잘못 구분이 아니라 '되게끔 하는 것'","items":["샘플 배송 지연","인쇄물 감리 누락","샘플 패키징 미완","부자재 적치 미비","런칭 일정 지연","마켓 대응 공백","아마존 수출 준비"]}},{"index":4,"file":"slide-05-b-work.html","layout":"layout-content","theme":"","elements":{"eyebrow":"B 작업","title":"일하는 방식을 개선하는 일","cards":[{"eyebrow":"물류","body":"입출고 및 전체 재고 현황 대시보드 구성"},{"eyebrow":"마케팅","body":"성과 현황 및 추이 대시보드 구성"},{"eyebrow":"경영지원","body":"결재 프로세스 재정비, 자금 현황 및 추이 대시보드"},{"eyebrow":"영업","body":"영업 프로세스 재정비, 우선순위 정의"}],"chips":["반복작업 자동화","업무 템플릿 제정","협업 도구 도입","회의 방식 개선"]}},{"index":5,"file":"slide-06-b-action.html","layout":"layout-content","theme":"","elements":{"eyebrow":"B 작업 실행 방안","title":"어떻게 실행할 것인가","cards":[{"eyebrow":"업무 티켓 시스템","body":"모든 업무를 가시화하고 우선순위를 명확히"},{"eyebrow":"업무 자동화","body":"반복 작업을 줄여 핵심 업무 집중 시간 확보"},{"eyebrow":"시스템 개발","body":"맞춤형 내부 도구로 운영 효율 극대화"},{"eyebrow":"일정 관리 / 공유","body":"팀 전체 일정을 투명하게 공유하고 조율"},{"eyebrow":"커뮤니케이션 규칙 제정","body":"채널별 목적과 응답 규칙을 정해 소통 비용 절감"}]}},{"index":6,"file":"slide-07-c-work.html","layout":"layout-content","theme":"","elements":{"eyebrow":"C 작업","title":"우리가 자꾸 발전할 수 있는 체계를 만드는 일","cards":[{"eyebrow":"A","title":"본업 수행","body":"본업을 잘 수행한다"},{"eyebrow":"B","title":"방식 개선","body":"방식을 지속 개선한다"},{"eyebrow":"C","title":"체계 구축","body":"개선 자체를 설계한다"},{"eyebrow":"회고 문화 정착","body":"매 분기 B 작업 성과를 점검하고 다음 개선 과제를 정의"},{"eyebrow":"지식 체계화","body":"노하우·의사결정 맥락을 문서화해 조직 자산으로 축적"}],"chips":["A·B·C 세 층위가 함께 돌아갈 때 — 조직은 스스로 성장한다"]}}]};
+const SLIDE_DATA = {"project":"week7-git","slides":[{"index":0,"file":"slide-01-terminal.html","layout":"layout-image","theme":"","elements":{"eyebrow":"1. Git Terminal","meta":"오픈소스 SW  |  201900614 김도원","title":"터미널 명령어 실행 결과","subtitle":"ls, cd, git remote -v 명령어 수행 후 캡처","placeholderLabel":"터미널 캡처 이미지 삽입"}},{"index":1,"file":"slide-02-github.html","layout":"layout-image","theme":"","elements":{"eyebrow":"2. Remote Repository","meta":"오픈소스 SW  |  201900614 김도원","title":"원격 저장소 Push 확인","subtitle":"c.txt 생성 후 GitHub 원격 저장소에 push한 결과","placeholderLabel":"GitHub 저장소 캡처 이미지 삽입"}},{"index":2,"file":"slide-03-conflict1.html","layout":"layout-two-col","theme":"","elements":{"eyebrow":"3. Git 협업 — 상황 1","title":"팀원과 다른 파일을 수정한 뒤 Push할 때","colTitles":["문제","해결"],"cards":[{"eyebrow":"Push 거부 발생","body":"팀원이 먼저 push했기 때문에 원격 저장소의 히스토리가 내 로컬보다 앞서 있는 상태. 파일 내용 충돌은 없지만 Git이 push를 거부합니다."},{"eyebrow":"Pull 후 다시 Push","body":"원격 변경사항을 먼저 받아온 뒤 push합니다.","code":"git pull\ngit push"}],"callout":"서로 다른 파일이므로 자동 병합 — 수동 수정 없이 바로 완료"}},{"index":3,"file":"slide-04-conflict2.html","layout":"layout-content","theme":"","elements":{"eyebrow":"4. Git 협업 — 상황 2","title":"팀원과 같은 파일을 수정한 뒤 Push할 때","steps":[{"num":"1","title":"git pull 실행","body":"원격 변경사항 가져오기 — 충돌 마커 자동 삽입됨"},{"num":"2","title":"파일 직접 편집","body":"충돌 마커 제거 후 최종 내용 확정"},{"num":"3","title":"병합 커밋 생성","body":"git add → git commit"},{"num":"4","title":"git push","body":"정상적으로 업로드 완료"}],"codeBlock":"<<<<<<< HEAD  (나의 수정 내용)\n=======\n팀원의 수정 내용\n>>>>>>> origin/main","callout":"충돌 마커를 제거하고 최종 내용만 남긴 뒤 커밋 — Git이 자동 병합 불가한 경우 반드시 수동 해결"}}]};
 // [SLIDE_DATA_END]
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -190,49 +190,70 @@ function renderContent(f, el, C, fn) {
   // ── STEPS (흐름 카드 + 이미지 플레이스홀더) ───────────────────────────────
   if (el.steps && el.steps.length) {
     const n = el.steps.length;
-    const AW = 28, AG = 8; // 화살표 너비 + 여백
+    const AW = 24, AG = 6;
     const stepW = Math.floor((W - 2*PX - (n-1)*(AW + AG*2)) / n);
-    const calloutH = el.callout ? 56 : 0;
-    const stepsH   = bodyH - calloutH - (calloutH ? 12 : 0);
+    const codeLines  = el.codeBlock ? el.codeBlock.split('\n').length : 0;
+    const calloutH   = el.callout   ? 60  : 0;
+    const codeBlockH = el.codeBlock ? Math.max(codeLines * 23 + 28, 80) : 0;
+    const extrasH    = calloutH + (calloutH ? 12 : 0) + codeBlockH + (codeBlockH ? 12 : 0);
+    const hasAnyImg  = el.steps.some(s => s.hasImage);
+
+    // 이미지 없는 step은 내용 높이 기준으로 상한 설정 (세로 늘어짐 방지)
+    const stepsH = hasAnyImg
+      ? bodyH - extrasH
+      : Math.min(bodyH - extrasH, 220);
+
+    // n >= 4이면 모든 카드 동일한 스타일(isLast 강조 없음), n <= 3이면 마지막 카드 accent
+    const useLastAccent = n <= 3 && hasAnyImg;
 
     el.steps.forEach((step, i) => {
-      const sx   = PX + i * (stepW + AW + AG*2);
-      const imgH = step.hasImage ? Math.floor(stepsH * 0.42) : 0;
-      const cardY = bodyY + imgH;
-      const cardH = stepsH - imgH;
-      const isLast = i === n - 1;
+      const sx      = PX + i * (stepW + AW + AG*2);
+      const imgH    = step.hasImage ? Math.floor(stepsH * 0.75) : 0;
+      const cardY   = bodyY + imgH;
+      const cardH   = stepsH - imgH;
+      const isLast  = i === n - 1;
+      const doAccent = useLastAccent && isLast;
 
       if (step.hasImage) placeholder(f, sx, bodyY, stepW, imgH, `이미지 ${i+1}`);
 
       rct(f, sx, cardY, stepW, cardH,
-          isLast ? C.accentBg : C.surface, 1, 12,
-          isLast ? C.accent   : C.border,  1);
+          doAccent ? C.accentBg : C.surface, 1, 12,
+          doAccent ? C.accent   : C.border,  1);
 
-      let ty = cardY + 20;
-      if (step.num) {
-        const nt = txt(f, sx+16, ty, stepW-32, step.num, 28, fn.black,
-                       isLast ? C.accent : C.muted, 0.5, 100, -2);
-        ty += (nt ? nt.height : 36) + 6;
+      let ty = cardY + 16;
+      // 스텝 번호: 원형 배지
+      if (step.num !== undefined && step.num !== null) {
+        const BADGE = 28;
+        rct(f, sx+16, ty, BADGE, BADGE, C.accent, 1, 14);
+        txt(f, sx+16, ty + Math.floor((BADGE-16)/2), BADGE, String(step.num), 13, fn.bold, '#ffffff', 1, 100, 0, 'CENTER');
+        ty += BADGE + 10;
       }
       if (step.title) {
-        const tt = txt(f, sx+16, ty, stepW-32, step.title, 20, fn.bold, C.text, 1, 130, -1);
-        ty += (tt ? tt.height : 28) + 6;
+        const tt = txt(f, sx+16, ty, stepW-32, step.title, 17, fn.bold, C.text, 1, 130, -1);
+        ty += (tt ? tt.height : 24) + 6;
       }
-      if (step.body) txt(f, sx+16, ty, stepW-32, step.body, 16, fn.reg, C.muted, 1, 150, 0);
+      if (step.body) txt(f, sx+16, ty, stepW-32, step.body, 13, fn.reg, C.muted, 1, 150, 0);
 
-      // 화살표
       if (i < n-1) {
         const ax = sx + stepW + AG;
-        const ay = bodyY + Math.floor(stepsH/2) - 10;
-        txt(f, ax, ay, AW, '\u2192', 16, fn.bold, C.accent, 1, 100, 0);
+        const ay = bodyY + Math.floor(stepsH/2) - 8;
+        txt(f, ax, ay, AW, '\u2192', 13, fn.bold, C.accent, 0.7, 100, 0);
       }
     });
 
+    let extraY = bodyY + stepsH + 12;
+
+    // codeBlock: 다크 코드 블록 렌더링 (줄 수에 따라 높이 자동 계산)
+    if (el.codeBlock) {
+      rct(f, PX, extraY, W-2*PX, codeBlockH, '#1e293b', 1, 8);
+      txt(f, PX+24, extraY+14, W-2*PX-48, el.codeBlock, 13, fn.semi, '#7dd3fc', 1, 175, 0);
+      extraY += codeBlockH + 12;
+    }
+
     if (el.callout) {
-      const cy = bodyY + stepsH + 12;
-      rct(f, PX, cy, W-2*PX, 56, C.accentBg, 1, 8, C.border, 0.5);
-      rct(f, PX, cy, 4, 56, C.accent, 1);
-      txt(f, PX+20, cy+16, W-2*PX-36, el.callout, 16, fn.semi, C.text, 1, 130, 0);
+      rct(f, PX, extraY, W-2*PX, calloutH, C.accentBg, 1, 8, C.border, 0.5);
+      rct(f, PX, extraY, 4, calloutH, C.accent, 1);
+      txt(f, PX+20, extraY+18, W-2*PX-36, el.callout, 16, fn.semi, C.text, 1, 130, 0);
     }
     return;
   }
@@ -376,42 +397,79 @@ function renderContent(f, el, C, fn) {
 
 function renderTwoCol(f, el, C, fn) {
   let y = PY;
-  const mid = W/2 - PX/2, cw = mid - PX;
+  const gap = 20;
+  const colW = Math.floor((W - 2*PX - gap) / 2);
+  const rx = PX + colW + gap;
+  const ct = el.colTitles || [];
+
   if (el.eyebrow) { txt(f, PX, y, W-2*PX, el.eyebrow, 13, fn.semi, C.accent, 1, 100, 50); y += 28; }
   if (el.title)   { txt(f, PX, y, W-2*PX, el.title,   38, fn.bold, C.text,   1, 120, -3); y += 56; }
   rct(f, PX, y, 40, 4, C.accent, 1, 99); y += 24;
 
-  const bodyH = H - y - PY;
-  const ct = el.colTitles || [];
-  const rx = PX + mid;
+  const calloutH = el.callout ? 60 : 0;
+  const bodyH = H - y - PY - (calloutH ? calloutH + 12 : 0);
 
-  if (ct[0]) { txt(f, PX, y, cw, ct[0], 13, fn.semi, C.accent, 1, 100, 10); }
-  const lTop = y + (ct[0] ? 28 : 0);
-  if (el.list && el.list.length) {
-    let ly = lTop;
-    el.list.slice(0,5).forEach(item => {
-      rct(f, PX, ly+8, 8, 8, C.accent, 1, 4);
-      txt(f, PX+20, ly, cw-20, item, 16, fn.reg, C.text, 1, 160, 0);
-      ly += 40;
+  // ── 2장 카드 → 좌/우 분할 렌더링 ────────────────────────────────────────────
+  if (el.cards && el.cards.length === 2 && !el.list) {
+    const CARD_STYLES = [
+      { bg: '#fff5f5', border: '#fca5a5', labelColor: '#dc2626' },
+      { bg: '#eff6ff', border: '#bfdbfe', labelColor: C.accent  },
+    ];
+    el.cards.forEach((c, i) => {
+      const cx  = i === 0 ? PX : rx;
+      const cs  = CARD_STYLES[i];
+      const colTitle = ct[i];
+      let ty = y;
+      if (colTitle) { txt(f, cx, ty, colW, colTitle, 13, fn.semi, cs.labelColor, 1, 100, 10); ty += 24; }
+      const cardH = bodyH - (colTitle ? 24 : 0);
+      rct(f, cx, ty, colW, cardH, cs.bg, 1, 12, cs.border, 1);
+      let iy = ty + 24;
+      if (c.eyebrow) { const t = txt(f, cx+20, iy, colW-40, c.eyebrow, 13, fn.semi, cs.labelColor, 1, 100, 10); iy += (t ? t.height : 18) + 10; }
+      if (c.title)   { const t = txt(f, cx+20, iy, colW-40, c.title,   22, fn.bold, C.text,        1, 130, -1); iy += (t ? t.height : 30) + 10; }
+      if (c.body)    { const t = txt(f, cx+20, iy, colW-40, c.body,    15, fn.reg,  C.muted,       1, 160,  0); iy += (t ? t.height : 60) + 14; }
+      if (c.code) {
+        rct(f, cx+20, iy, colW-40, 56, '#1e293b', 1, 8);
+        txt(f, cx+36, iy+10, colW-72, c.code, 14, fn.semi, '#7dd3fc', 1, 160, 0);
+      }
     });
   } else {
-    placeholder(f, PX, lTop, cw, bodyH-(ct[0]?28:0), 'Left');
+    // ── 원래 동작: 왼쪽=list, 오른쪽=cards ────────────────────────────────────
+    if (ct[0]) { txt(f, PX, y, colW, ct[0], 13, fn.semi, C.accent, 1, 100, 10); }
+    const lTop = y + (ct[0] ? 28 : 0);
+    if (el.list && el.list.length) {
+      let ly = lTop;
+      el.list.slice(0,5).forEach(item => {
+        rct(f, PX, ly+8, 8, 8, C.accent, 1, 4);
+        txt(f, PX+20, ly, colW-20, item, 16, fn.reg, C.text, 1, 160, 0);
+        ly += 40;
+      });
+    } else {
+      placeholder(f, PX, lTop, colW, bodyH-(ct[0]?28:0), 'Left');
+    }
+    if (ct[1]) { txt(f, rx, y, colW, ct[1], 13, fn.semi, C.accent, 1, 100, 10); }
+    const rTop = y + (ct[1] ? 28 : 0);
+    if (el.cards && el.cards.length) {
+      let cy = rTop;
+      const ch = Math.min((bodyH-(ct[1]?28:0)) / el.cards.length - 12, 120);
+      el.cards.slice(0,4).forEach(c => {
+        rct(f, rx, cy, colW, ch, C.surface, 1, 10, C.border, 0.8);
+        let ty = cy + 18;
+        if (c.eyebrow) { txt(f, rx+18, ty, colW-36, c.eyebrow, 12, fn.semi, C.accent, 1, 100, 10); ty += 20; }
+        if (c.title)   { txt(f, rx+18, ty, colW-36, c.title,   17, fn.semi, C.text,   1, 130, -1); ty += 28; }
+        if (c.body)    { txt(f, rx+18, ty, colW-36, c.body,    14, fn.reg,  C.muted,  1, 150,  0); }
+        cy += ch + 12;
+      });
+    } else {
+      placeholder(f, rx, rTop, colW, bodyH-(ct[1]?28:0), 'Right');
+    }
   }
 
-  if (ct[1]) { txt(f, rx, y, cw, ct[1], 13, fn.semi, C.accent, 1, 100, 10); }
-  const rTop = y + (ct[1] ? 28 : 0);
-  if (el.cards && el.cards.length) {
-    let cy = rTop;
-    const ch = Math.min((bodyH-(ct[1]?28:0)) / el.cards.length - 12, 120);
-    el.cards.slice(0,4).forEach(c => {
-      rct(f, rx, cy, cw, ch, C.surface, 1, 10, C.border, 0.8);
-      let ty = cy + 18;
-      if (c.title) { txt(f, rx+18, ty, cw-36, c.title, 17, fn.semi, C.text,  1, 130, -1); ty += 28; }
-      if (c.body)  { txt(f, rx+18, ty, cw-36, c.body,  14, fn.reg,  C.muted, 1, 150,  0); }
-      cy += ch + 12;
-    });
-  } else {
-    placeholder(f, rx, rTop, cw, bodyH-(ct[1]?28:0), 'Right');
+  // ── Callout ────────────────────────────────────────────────────────────────
+  if (el.callout) {
+    const cy = H - PY - calloutH;
+    rct(f, PX, cy, W-2*PX, calloutH, C.accentBg, 1, 8, C.border, 0.5);
+    rct(f, PX, cy, 4, calloutH, C.accent, 1);
+    txt(f, PX+20, cy+18, W-2*PX-36, el.callout, 16, fn.semi, C.text, 1, 130, 0);
   }
 }
 
@@ -424,12 +482,18 @@ function renderQuote(f, el, C, fn) {
 }
 
 function renderImage(f, el, C, fn) {
-  placeholder(f, 0, 0, W, H, 'Full Image');
-  if (el.title || el.subtitle) {
-    rct(f, 0, H-180, W, 180, '#000000', 0.55);
-    if (el.title)    txt(f, PX, H-140, W-2*PX, el.title,    28, fn.bold, '#ffffff', 1,    120, -1);
-    if (el.subtitle) txt(f, PX, H-100, W-2*PX, el.subtitle, 16, fn.reg,  '#ffffff', 0.75, 150,  0);
+  // 헤더: eyebrow(좌) + meta(우) → title → subtitle → 대형 이미지 플레이스홀더
+  let y = PY;
+  if (el.eyebrow || el.meta) {
+    if (el.eyebrow) txt(f, PX,       y, (W-2*PX)*0.55, el.eyebrow, 13, fn.semi, C.accent, 1, 100, 50);
+    if (el.meta)    txt(f, PX, y, W-2*PX, el.meta, 13, fn.reg, C.muted, 1, 100, 0, 'RIGHT');
+    y += 28;
   }
+  if (el.title)   { const t = txt(f, PX, y, W-2*PX, el.title,   38, fn.bold, C.text,  1, 120, -3); y += (t ? t.height : 56) + 8; }
+  if (el.subtitle){ const t = txt(f, PX, y, W-2*PX, el.subtitle, 16, fn.reg,  C.muted, 1, 150,  0); y += (t ? t.height : 24) + 20; }
+  // 이미지 플레이스홀더 — 나머지 공간 전체 사용
+  const phH = H - y - PY;
+  placeholder(f, PX, y, W-2*PX, phH, el.placeholderLabel || '이미지 삽입');
 }
 
 function renderClosing(f, el, C, fn) {
